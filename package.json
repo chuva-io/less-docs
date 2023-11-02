@@ -6,7 +6,9 @@
   "homepage": "https://less.chuva.io",
   "repository": "https://github.com/chuva-io/less-site",
   "scripts": {
-    "develop": "docusaurus start"
+    "develop": "docusaurus start",
+    "build": "docusaurus build --out-dir less/statics/site",
+    "deploy": "less-cli deploy --static less-site"
   },
   "dependencies": {
     "@docusaurus/core": "3.0.0",
@@ -19,6 +21,7 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
+    "@chuva.io/less-cli": "^1.0.0-beta.12",
     "@docusaurus/module-type-aliases": "3.0.0",
     "@docusaurus/types": "3.0.0"
   },

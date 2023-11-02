@@ -42,7 +42,7 @@ const config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: './sidebars.js',
-          editUrl: 'https://github.com/chuva-io/less-site',
+          editUrl: 'https://github.com/chuva-io/less-site/blob/main',
         },
         theme: {
           customCss: './src/css/custom.css',

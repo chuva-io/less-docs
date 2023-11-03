@@ -5,9 +5,11 @@ sidebar_position: 2
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Create Account
+# Sign In / Sign Up
 
 Create your Less account straight from the Less CLI and deploy your first project in seconds.
+
+## Sign Up
 
 <Tabs groupId="package-manager" queryString="package-manager">
   <TabItem value="npx" label="npx">
@@ -44,3 +46,33 @@ Less will create an AWS account for you and email you your credentials once you 
 :::note
 We are working on bringing log functionality to the CLI to make them easier for you to access.
 :::
+
+## Sign In
+
+<Tabs groupId="package-manager" queryString="package-manager">
+  <TabItem value="npx" label="npx">
+    ```bash
+    npx @chuva.io/less-cli login
+    ```
+  </TabItem>
+
+  <TabItem value="npm" label="npm">
+    ```bash
+    npm i -g @chuva.io/less-cli
+    less-cli login
+  ```
+  </TabItem>
+
+  <TabItem value="yarn" label="yarn">
+    ```bash
+    yarn global add @chuva.io/less-cli
+    less-cli login
+    ```
+  </TabItem>
+</Tabs>
+
+```bash
+[less-cli] Enter your email: cesaria@chuva.io
+[less-cli] Enter your password: ************
+[less-cli] Login successful! Your LESS_TOKEN has been exported to your environment.
+```

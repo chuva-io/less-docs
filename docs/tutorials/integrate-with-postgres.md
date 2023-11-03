@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+tags: ['postgres', 'postgresql', 'sql', 'database', 'relational database']
 ---
 
 import Tabs from '@theme/Tabs';

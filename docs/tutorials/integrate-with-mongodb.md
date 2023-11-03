@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+tags: ['mongo', 'mongodb', 'nosql', 'json', 'database', 'document database']
 ---
 
 import Tabs from '@theme/Tabs';

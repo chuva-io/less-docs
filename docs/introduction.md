@@ -3,9 +3,6 @@ sidebar_position: 1
 slug: /
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 # Introduction
 
 Less automates the creation and deployment of serverless [Static Websites](/static-websites), [REST APIs](/rest-apis), [Web Sockets](/web-sockets), [Key-Value Store](/key-value-store), [Pub/Sub](/fanout), [CRON Jobs](/cron-jobs), and [Shared Code](/shared-code) based on your file structure. Just write your code and deploy using your favorite programming language. 

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+sidebar_position: 8
 tags: ['distributed system', 'fault-tolerant', 'event-driven', 'microservice', 'pub/sub', 'topic', 'event', 'queue', 'async', 'publisher', 'subscriber', 'processor']
 ---
 

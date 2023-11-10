@@ -76,5 +76,34 @@ mkdir -p less/statics/demo-website
   
 </Tabs>
 
-## Deploy
+## Custom Domain
+Less also allows you to use a custom domain with your static websites. Use the following command to set up a custom domain for a specific static site:
+```bash
+npx @chuva.io/less-cli domains --project-name PROJECT_NAME --static-name STATIC_NAME --custom-domain CUSTOM_DOMAIN
+```
 
+For example, if we want to use a custom domain `demo-website.com` for the `demo-website` project, the command will be the following:
+
+```bash
+npx @chuva.io/less-cli domains --project-name website --static-name demo-website --custom-domain demo-website.com
+```
+
+The output will be the following:
+
+```bash
+[less-cli] Connecting to the Less Server...
+[less-cli] NS Records
+┌─────────┬──────┬────────────────────────────────────┬───────────────────────────┐
+│ (index) │ type │                name                │           value           │
+├─────────┼──────┼────────────────────────────────────┼───────────────────────────┤
+│    0    │ 'NS' │ 'demo-website.com'                 │ 'ns-000.exampledns.org'   │
+│    1    │ 'NS' │ 'demo-website.com'                 │ 'ns-000.exampledns.net'   │
+│    2    │ 'NS' │ 'demo-website.com'                 │ 'ns-000.exampledns.co.uk' │
+│    3    │ 'NS' │ 'demo-website.com'                 │ 'ns-000.exampledns.com'   │
+└─────────┴──────┴────────────────────────────────────┴───────────────────────────┘
+```
+Now add those DNS Records on you DNS provider and wait for the DNS to propagate, and that it 🚀
+
+:::info
+Most DNS updates take effect within an hour, but could take up to 48 hours to update globally.
+:::

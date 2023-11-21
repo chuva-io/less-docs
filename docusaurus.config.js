@@ -57,7 +57,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Less Documentation',
+        title: 'Less Documentation (beta)',
         logo: {
           alt: 'Chuva logo',
           src: 'img/chuva-logo-h-light.svg',

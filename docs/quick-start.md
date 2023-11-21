@@ -16,7 +16,7 @@ mkdir -p less/apis/demo
 
 ## 2. Create the `/hello` route
 ```bash
-mkdir /less/apis/demo/hello
+mkdir less/apis/demo/hello
 ```
 
 ## 3. Create the `GET` request
@@ -46,9 +46,9 @@ mkdir /less/apis/demo/hello
   import json
 
   def process(request, response):
-      message = {'hello': 'world'}
-      response.statusCode = 200
-      response.body = json.dumps(message)
+      message = { 'hello': 'world' }
+      response['statusCode'] = 200
+      response['body'] = json.dumps(message) # The response body should always be a string.
       return response
   ```
   </TabItem>

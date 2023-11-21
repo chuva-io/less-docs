@@ -93,7 +93,7 @@ Here's how we can access the value of `name`:
   <TabItem value="py" label="Python">
   ```py {2} title="less/apis/demo/hello/{name}/get.py" showLineNumbers
   def process(request, response):
-      name = request.params.get('name')
+      name = request['params']['name']
   ```
   </TabItem>
   
@@ -119,7 +119,7 @@ Here's how we can access the value of `name` passed as a query param (e.g. `/hel
   <TabItem value="py" label="Python">
   ```py {2} title="less/apis/demo/hello/get.py" showLineNumbers
   def process(request, response):
-      name = request.query.get('name') # 'world'
+      name = request['query']['name'] # 'world'
   ```
   </TabItem>
   
@@ -146,9 +146,9 @@ Configure your HTTP response using the `response` object. Make sure to return it
   import json
 
   def process(request, response):
-      message = {'hello': 'world'}
-      response.statusCode = 200
-      response.body = json.dumps(message) # The response body should always be a string.
+      message = { 'hello': 'world' }
+      response['statusCode'] = 200
+      response['body'] = json.dumps(message) # The response body should always be a string.
       return response
   ```
   </TabItem>

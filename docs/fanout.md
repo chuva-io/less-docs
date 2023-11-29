@@ -158,3 +158,36 @@ mkdir less/external_topics/user_management_service/user_created/create_friend_su
   </TabItem>
   
 </Tabs>
+
+## Publish to your Topics via HTTP
+
+Less allows you to publish to your topics through an HTTP request. This capability stems from Less automatically generating a specific API for your topics. When you deploy your project, Less creates an API for your topics, generating an API endpoint with a route that supports the POST method.
+
+```
+  POST /topics/{topic_id}
+```
+
+#### Example:
+##### Deploying a project with topics
+```
+[less] Building... ⚙️
+[less] Build complete ✅
+[less] Deploying... 🚀
+[less] Deployment complete ✅
+[less] Resources
+[less]   - API URLs
+[less]     - Chat: https://a2m1n3.execute-api.eu-west-1.amazonaws.com
+[less]     - Topics: https://n1s3n2.execute-api.eu-west-1.amazonaws.com
+[less] 🇨🇻
+```
+Following the project deployment, a Topic API is generated. Utilizing this API endpoint, you can seamlessly publish to your topics. 
+
+```
+curl --request POST \
+  --url https://n1s3n2.execute-api.eu-west-1.amazonaws.com/topics/send_message \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "email": "example@email.com",
+    "message": "This is the content of the new topic."
+  }'
+```

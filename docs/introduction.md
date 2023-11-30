@@ -20,6 +20,7 @@ Less inspects your `/less` directory and **provisions your serverless AWS resour
   └─ external_topics
   └─ crons
   └─ shared
+  └─ functions
 ```
 
 :::tip

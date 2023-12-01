@@ -113,10 +113,23 @@ Create an `external_topics` folder inside of `less` to set up your external app 
 mkdir -p less/external_topics
 ```
 
-Next, add the projects you want to connect to to the `external_topics` folder. The folder name should match the name of the application you want to connect to. For example, here we're connecting to the `user_management_service` application.
+Next, add the projects you want to connect to to the `external_topics` folder.
+For example, here we're connecting to the `user_manager` application.
 
 ```bash
 mkdir less/external_topics/user_management_service
+```
+
+
+Add the folder name to the `less.config.yaml` file as an environment variable. The value of this variable should match the name of the application you want to connect to.
+```yaml
+env_vars:
+  - user_management_service
+```
+
+Export the name of the application you want to connect to. This step is necessary to establish the connection between your project and the external application.
+```bash
+export user_management_service=user_manager
 ```
 
 :::info In contrast to topics in the `less/topics` folder, we are not creating topics here. In this case we are simply connecting to a topic from the specified application.

@@ -43,18 +43,6 @@ mkdir less/sockets/demo/connect
     };
     ```
   </TabItem>
-
-  <TabItem value="py" label="Python">
-    ```bash
-    touch less/sockets/demo/connect/__init__.py
-    ```
-
-    ```py title="less/sockets/demo/connect/__init__.py" showLineNumbers
-    def process(data):
-      connection_id = data.get('connection_id')
-      # Your code here
-    ```
-  </TabItem>
   
 </Tabs>
 
@@ -140,14 +128,6 @@ Here's an example of how you can save your `connection_id` using Less's built in
     };
     ```
   </TabItem>
-
-  <TabItem value="py" label="Python">
-    ```py title="less/sockets/demo/connect/__init__.py" showLineNumbers
-    def process(data):
-      connection_id = data.get('connection_id')
-      # Your code here
-    ```
-  </TabItem>
   
 </Tabs>
 
@@ -171,17 +151,6 @@ mkdir less/sockets/demo/disconnect
     };
     ```
   </TabItem>
-
-  <TabItem value="py" label="Python">
-    ```bash
-    touch less/sockets/demo/disconnect/__init__.py
-    ```
-
-    ```py title="less/sockets/demo/disconnect/__init__.py" showLineNumbers
-    def process(data):
-      connection_id = data.get('connection_id')
-    ```
-  </TabItem>
   
 </Tabs>
 
@@ -202,27 +171,6 @@ We can use the `connection_id` obtained in the socket `connect` handler in order
     Here's an example of publishing a message to clients connected to a `demo` socket:
     ```jsx showLineNumbers
     await sockets.demo.publish(
-      message,
-      [connection_id_1, connection_id_2]
-    );
-    ```
-  </TabItem>
-
-  <TabItem value="py" label="Python">
-    Import `sockets` from `less` to send messages to your socket's clients.
-    
-    ```py showLineNumbers
-    from less import sockets
-    ```
-
-    Now you can send messages to an array of client connection IDs for the designated socket.
-
-    Let's send a message to our `demo` socket:
-
-    ```py {3-6} showLineNumbers
-    from less import sockets
-
-    sockets.demo.publish(
       message,
       [connection_id_1, connection_id_2]
     );
@@ -255,17 +203,6 @@ Let's create a `POST /hello` route that will send messages to a connected client
     response.statusCode = 204;
     return response;
   };
-  ```
-  </TabItem>
-
-  <TabItem value="py" label="Python">
-  ```bash
-  touch less/apis/demo/hello/post.py
-  ```
-
-  ```py title="less/apis/demo/hello/post.py" showLineNumbers
-  def process(request, response):
-      pass
   ```
   </TabItem>
 
@@ -332,18 +269,6 @@ mkdir less/sockets/demo/my_channel
       console.log(`Received message from: ${connection_id}`);
       console.log(`Message: ${data}`);
     };
-    ```
-  </TabItem>
-
-  <TabItem value="py" label="Python">
-    ```bash
-    touch less/sockets/demo/my_channel/__init__.py
-    ```
-
-    ```py title="less/sockets/demo/my_channel/__init__.py" showLineNumbers
-    def process(input_data):
-      data = input_data.get('data')
-      connection_id = input_data.get('connection_id')
     ```
   </TabItem>
   
@@ -427,14 +352,6 @@ Send a message back to the client to test:
       const message = `You said: "${JSON.stringify(data)}"`;
       await sockets.demo.publish(message, [connection_id]);
     };
-    ```
-  </TabItem>
-
-  <TabItem value="py" label="Python">
-    ```py title="less/sockets/demo/my_channel/__init__.py" showLineNumbers
-    def process(input_data):
-      data = input_data.get('data')
-      connection_id = input_data.get('connection_id')
     ```
   </TabItem>
   

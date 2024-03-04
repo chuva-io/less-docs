@@ -30,17 +30,6 @@ mkdir -p less/crons/generate_daily_report
     };
     ```
   </TabItem>
-
-  <TabItem value="py" label="Python">
-    ```bash
-    touch less/crons/generate_daily_report/__init__.py
-    ```
-
-    ```py title="less/crons/generate_daily_report/__init__.py" showLineNumbers
-    def process():
-      # Your code here
-    ```
-  </TabItem>
   
 </Tabs>
 

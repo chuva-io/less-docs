@@ -32,17 +32,6 @@ mkdir less/functions/sum
     }
     ```
   </TabItem>
-
-  <TabItem value="py" label="Python">
-    ```bash
-    touch less/functions/sum/__init__.py
-    ```
-
-    ```py title="less/functions/sum/__init__.py" showLineNumbers
-    def process(data):
-      return data.get('a') + data.get('b')
-    ```
-  </TabItem>
   
 </Tabs>
 
@@ -61,19 +50,6 @@ Less offers 2 ways to call cloud functions:
     const sum_result = await functions.sum({ a: 3, b: 4 });
     console.log('Result: ', sum_result);
     // Result: 7
-    ```
-  </TabItem>
-
-  <TabItem value="py" label="Python">
-    Import `functions` from `less` to call the function and process your payload in order to retrieve the response.
-    
-    ```py showLineNumbers
-    from less import functions
-
-    sum_result = functions.sum({ 'first_number': 3, 'second_number': 4 })
-
-    print('Result:', sum_result)
-    # Result: 7
     ```
   </TabItem>
   
@@ -100,17 +76,6 @@ Let's create a `GET /sum` route that will return the sum of 2 numbers using our 
     response.body = `The sum is: ${sum_result}`
     return response;
   };
-  ```
-  </TabItem>
-
-  <TabItem value="py" label="Python">
-  ```bash
-  touch less/apis/demo/sum/get.py
-  ```
-
-  ```py title="less/apis/demo/sum/get.py" showLineNumbers
-  def process(request, response):
-      pass
   ```
   </TabItem>
 

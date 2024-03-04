@@ -19,13 +19,6 @@ All Less deployments come with a built in key-value store.
     const { kvs } = require('@chuva.io/less');
     ```
   </TabItem>
-
-  <TabItem value="py" label="Python">
-    Import `kvs` from `less`.
-    ```python showLineNumbers
-    from less import kvs
-    ```
-  </TabItem>
   
 </Tabs>
 
@@ -43,14 +36,6 @@ All Less deployments come with a built in key-value store.
     ```
   </TabItem>
 
-  <TabItem value="py" label="Python">
-    ```python {3} showLineNumbers
-    from less import kvs
-
-    kvs.set('MY_KEY', 'This is my value.')
-    ```
-  </TabItem>
-  
 </Tabs>
 
 ## Get Value for Key
@@ -67,14 +52,6 @@ Get a **value** for a **key**.
     ```
   </TabItem>
 
-  <TabItem value="py" label="Python">
-    ```python {3} showLineNumbers
-    from less import kvs
-
-    my_value = kvs.get('MY_KEY')
-    ```
-  </TabItem>
-  
 </Tabs>
 
 
@@ -89,14 +66,6 @@ Delete a **key** and its **value**.
     const { kvs } = require('@chuva.io/less');
 
     await kvs.delete('MY_KEY');
-    ```
-  </TabItem>
-
-  <TabItem value="py" label="Python">
-    ```python {3} showLineNumbers
-    from less import kvs
-
-    kvs.delete('MY_KEY')
     ```
   </TabItem>
   
@@ -127,20 +96,7 @@ mkdir -p less/topics/kvs_created
     }
     ```
   </TabItem>
-
-  <TabItem value="py" label="Python">
-    ```bash
-    touch less/topics/kvs_created/__init__.js
-    ```
   
-    ```python title="less/topics/kvs_created/__init__.js"
-    def process(data):
-      key = data.get('key')
-      new_value = data.get('new_value')
-    
-      print(f"A new item is being created with the key '{key}' and value: \n{new_value}")
-    ```
-  </TabItem>
 </Tabs>
 
 Here is an example `kvs_created` event payload:
@@ -178,19 +134,6 @@ mkdir -p less/topics/kvs_updated
     ```
   </TabItem>
 
-  <TabItem value="py" label="Python">
-    ```bash
-    touch less/topics/kvs_updated/__init__.js
-    ```
-  
-    ```python title="less/topics/kvs_updated/__init__.js"
-    def process(data):
-      key = data.get('key')
-      new_value = data.get('new_value')
-    
-      print(f"A new item is being created with the key '{key}' and value: \n{new_value}")
-    ```
-  </TabItem>
 </Tabs>
 
 Here is an example `kvs_updated` event payload:
@@ -236,20 +179,6 @@ mkdir -p less/topics/kvs_deleted
       console.log(`Item with with key: '${key}' deleted.`);
       console.log(`Old value: ${old_value}.`);
     }
-    ```
-  </TabItem>
-
-  <TabItem value="py" label="Python">
-    ```bash
-    touch less/topics/kvs_deleted/__init__.js
-    ```
-  
-    ```python title="less/topics/kvs_deleted/__init__.js"
-    def process(data):
-      key = data.get('key')
-      new_value = data.get('new_value')
-    
-      print(f"A new item is being created with the key '{key}' and value: \n{new_value}")
     ```
   </TabItem>
 </Tabs>

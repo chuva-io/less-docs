@@ -35,21 +35,6 @@ mkdir less/apis/demo/hello
   };
   ```
   </TabItem>
-
-  <TabItem value="py" label="Python">
-  ```bash
-  touch less/apis/demo/hello/get.py
-  ```
-
-  ```py title="less/apis/demo/hello/get.py" showLineNumbers
-  import json
-
-  def process(request, response):
-      response['statusCode'] = 200
-      response['body'] = 'Hello, world.'
-      return response
-  ```
-  </TabItem>
   
 </Tabs>
 

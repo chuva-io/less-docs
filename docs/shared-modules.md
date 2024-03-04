@@ -39,20 +39,6 @@ With Less you can organize your modules as you normally would.
                   └─ schema.js
     ```
   </TabItem>
-
-  <TabItem value="py" label="Python">
-    ```bash
-    ─ less
-      └─ shared
-        └─ models
-            └─ __init__.py
-            └─ User
-              └─ __init__.py
-              └─ create
-                  └─ __init__.py
-                  └─ schema.py
-    ```
-  </TabItem>
   
 </Tabs>
 
@@ -65,12 +51,6 @@ Here's how you would import the example Model above:
   <TabItem value="nodejs" label="Node.js">
     ```js showLineNumbers title="less/apis/demo/hello/get.js"
     const { User } = require('models');
-    ```
-  </TabItem>
-
-  <TabItem value="py" label="Python">
-    ```py showLineNumbers title="less/apis/demo/hello/get.py"
-    from models import User
     ```
   </TabItem>
   

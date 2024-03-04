@@ -51,17 +51,6 @@ Let's create a `GET /hello` route that returns *"Hello, world."* in the response
   };
   ```
   </TabItem>
-
-  <TabItem value="py" label="Python">
-  ```bash
-  touch less/apis/demo/hello/get.py
-  ```
-
-  ```py title="less/apis/demo/hello/get.py" showLineNumbers
-  def process(request, response):
-      pass
-  ```
-  </TabItem>
   
 </Tabs>
 
@@ -82,17 +71,6 @@ Let's create a `POST /hello` route. We will accept a `name` in the body and retu
     response.statusCode = 201;
     return response;
   };
-  ```
-  </TabItem>
-
-  <TabItem value="py" label="Python">
-  ```bash
-  touch less/apis/demo/hello/post.py
-  ```
-
-  ```py title="less/apis/demo/hello/post.py" showLineNumbers
-  def process(request, response):
-      pass
   ```
   </TabItem>
 
@@ -129,18 +107,6 @@ mkdir less/apis/demo/hello/{name}
   };
   ```
   </TabItem>
-
-  <TabItem value="py" label="Python">
-  ```bash
-  touch less/apis/demo/hello/{name}/get.py
-  ```
-
-  Here's how we can access the value of `name` from the route path:
-  ```py {2} title="less/apis/demo/hello/{name}/get.py" showLineNumbers
-  def process(request, response):
-      name = request['params']['name']
-  ```
-  </TabItem>
   
 </Tabs>
 
@@ -167,13 +133,6 @@ You can optionally set the response HTTP status code through the `statusCode` pr
   ```
   </TabItem>
 
-  <TabItem value="py" label="Python">
-  ```py {2} title="less/apis/demo/hello/get.py" showLineNumbers
-  def process(request, response):
-      name = request['query']['name'] # 'world'
-  ```
-  </TabItem>
-  
 </Tabs>
 
 ### Headers
@@ -195,13 +154,6 @@ Here's how we can access the *Accept* header in a request and set the *Content-T
     }
     return response;
   };
-  ```
-  </TabItem>
-
-  <TabItem value="py" label="Python">
-  ```py {2} title="less/apis/demo/hello/get.py" showLineNumbers
-  def process(request, response):
-      name = request['query']['name'] # 'world'
   ```
   </TabItem>
   
@@ -233,13 +185,6 @@ Convert your data as needed.
   };
   ```
   </TabItem>
-
-  <TabItem value="py" label="Python">
-  ```py {2} title="less/apis/demo/hello/get.py" showLineNumbers
-  def process(request, response):
-      name = request['query']['name'] # 'world'
-  ```
-  </TabItem>
   
 </Tabs>
 
@@ -262,13 +207,6 @@ Here's how we can access the value of `name` passed as a query param (e.g. `GET 
     }
     return response;
   };
-  ```
-  </TabItem>
-
-  <TabItem value="py" label="Python">
-  ```py {2} title="less/apis/demo/hello/get.py" showLineNumbers
-  def process(request, response):
-      name = request['query']['name'] # 'world'
   ```
   </TabItem>
   

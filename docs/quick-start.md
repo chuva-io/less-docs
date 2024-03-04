@@ -9,17 +9,18 @@ import TabItem from '@theme/TabItem';
 
 **TLDR; Create a `GET /hello` route and deploy.**
 
-## 1. Create the `demo` REST API
+## 1. Create a REST API route
+### Create a `demo` REST API
 ```bash
 mkdir -p less/apis/demo
 ```
 
-## 2. Create the `/hello` route
+### Create a `/hello` route
 ```bash
 mkdir less/apis/demo/hello
 ```
 
-## 3. Create the `GET` request
+### Create a `GET` request
 <Tabs groupId="programming-language" queryString="programming-language">
   
   <TabItem value="nodejs" label="Node.js">
@@ -29,9 +30,7 @@ mkdir less/apis/demo/hello
   
   ```js title="less/apis/demo/hello/get.js" showLineNumbers
   module.exports.process = async (request, response) => {
-      const message = { hello: 'world' };
-      response.statusCode = 200;
-      response.body = JSON.stringify(message);
+      response.body = 'Hello, world.';
       return response;
   };
   ```
@@ -46,36 +45,92 @@ mkdir less/apis/demo/hello
   import json
 
   def process(request, response):
-      message = { 'hello': 'world' }
       response['statusCode'] = 200
-      response['body'] = json.dumps(message) # The response body should always be a string.
+      response['body'] = 'Hello, world.'
       return response
   ```
   </TabItem>
   
 </Tabs>
 
-## 4. Deploy
+:::info Less REST API Documentation
+Read the [Less REST API documentation](/rest-apis).
+:::
+
+
+## 2. Deploy
 <Tabs groupId="package-manager" queryString="package-manager">
 
   <TabItem value="npx" label="npx">
     ```bash
-    npx @chuva.io/less-cli deploy my-application
+    npx @chuva.io/less-cli deploy my-less-project
     ```
   </TabItem>
 
   <TabItem value="npm" label="npm">
     ```bash
     npm i -g @chuva.io/less-cli
-    less-cli deploy my-application
-  ```
+    less-cli deploy my-less-project
+    ```
   </TabItem>
 
   <TabItem value="yarn" label="yarn">
     ```bash
     yarn global add @chuva.io/less-cli
-    less-cli deploy my-application
+    less-cli deploy my-less-project
     ```
   </TabItem>
 
 </Tabs>
+
+You just deployed a _globally available_ _serverless_ application with _infinite scale_ to _AWS_!
+
+:::info Less Deployments Documentation
+Read the [Less deployments documentation](/deploy) to learn more.
+:::
+
+## 3. Test
+
+Once the deployment is complete you will be able to find your *Demo* API under *Resources* in the output:
+```bash
+[less-cli] Deployment complete ✅
+[less-cli] Resources
+[less-cli] - API URLs
+[less-cli]  - Demo: https://[PROJECT_NAME]-[API_NAME].api.eu-0.a83b464c9.less.chuva.cv
+[less-cli] 🇨🇻
+```
+
+You can test the `GET /hello` route using **curl**:
+```bash
+curl [BASE_URL]/hello
+```
+
+## 4. View Logs
+In order to view logs for your GET request you can execute the following command:
+<Tabs groupId="package-manager" queryString="package-manager">
+
+  <TabItem value="npx" label="npx">
+    ```bash
+    npx @chuva.io/less-cli log --project my-less-project --path apis/demo/hello/get
+    ```
+  </TabItem>
+
+  <TabItem value="npm" label="npm">
+    ```bash
+    npm i -g @chuva.io/less-cli
+    less-cli log --project my-less-project --path apis/demo/hello/get
+    ```
+  </TabItem>
+
+  <TabItem value="yarn" label="yarn">
+    ```bash
+    yarn global add @chuva.io/less-cli
+    less-cli log --project my-less-project --path apis/demo/hello/get
+    ```
+  </TabItem>
+
+</Tabs>
+
+:::info Less Logs Documentation
+Read the [Less logs documentation](/cli/function-logs) to learn more.
+:::

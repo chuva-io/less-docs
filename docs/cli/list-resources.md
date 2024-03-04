@@ -24,7 +24,7 @@ After running the `less-cli list resources <project_id>` command, you might see 
 
 ```bash
 [less-cli] API URLs
-[less-cli]      - Demo: https://3izstmbced.execute-api.eu-west-1.amazonaws.com/production
+[less-cli]      - Demo: https://[PROJECT_NAME]-[API_NAME].api.eu-0.a83b464c9.less.chuva.cv
 [less-cli] WEBSOCKET URLs
-[less-cli]      - ChatSocketApi: wss://pr9fbdgwve.execute-api.eu-west-1.amazonaws.com/production
+[less-cli]      - ChatSocketApi: wss://[PROJECT_NAME]-[SOCKET_NAME].ws.eu-0.a83b464c9.less.chuva.cv
 ```

@@ -40,12 +40,7 @@ Less will create an AWS account for you and email you your credentials once you 
 [less-cli] Enter your email: cesaria@chuva.io
 [less-cli] Enter your password: ************
 [less-cli] Enter the verification code sent to your email: ******
-[less-cli] Account verified! Please check your email for your Less credentials.
 ```
-
-:::note
-We are working on bringing log functionality to the CLI to make them easier for you to access.
-:::
 
 ## Sign In
 

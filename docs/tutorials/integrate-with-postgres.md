@@ -75,7 +75,6 @@ export POSTGRES_URL="postgres://username:password@host:5432/database"
 
         module.exports = {
           process: async (request, response) => {
-            response.statusCode = 200;
             const result = await query('SELECT NOW()');
             // Get the first `now` column value.
             response.body = result.rows[0].now;

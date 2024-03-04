@@ -87,7 +87,6 @@ export MONGODB_DATABASE_NAME='my_database'
             const result = await get_all_items();
 
             // Return HTTP response.
-            response.statusCode = 200;
             response.body = JSON.stringify(result);
             return response;
           }
@@ -137,7 +136,6 @@ export MONGODB_DATABASE_NAME='my_database'
             result = get_all_items()
             
             # Return HTTP response.
-            response.statusCode = 200
             response.body = result
             return response
         ```

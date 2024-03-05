@@ -5,7 +5,7 @@ slug: /
 
 # Introduction
 
-Less automates the creation and deployment of serverless [Static Websites](/static-websites), [REST APIs](/rest-apis), [Web Sockets](/web-sockets), [Key-Value Store](/key-value-store), [Pub/Sub](/fanout), [CRON Jobs](/cron-jobs), [Shared Code](/shared-code) and [Cross Language Functions](/cross-language-functions) based on your file structure. Just write your code and deploy using your favorite programming language. 
+Less automates the creation and deployment of serverless [Static Websites](/static-websites), [REST APIs](/rest-apis), [Web Sockets](/web-sockets), [Key-Value Store](/key-value-store), [Pub/Sub](/fanout), [CRON Jobs](/cron-jobs), [Shared Code](/shared-code), [Cross Language Functions](/cross-language-functions) and [File Storage](/file-storage) based on your file structure. Just write your code and deploy using your favorite programming language. 
 
 ---
 

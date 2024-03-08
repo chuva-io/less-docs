@@ -16,21 +16,21 @@ In order to deploy your application or service, execute `less-cli deploy` with y
 
   <TabItem value="npx" label="npx">
     ```bash
-    npx @chuva.io/less-cli deploy my-application
+    npx @chuva.io/less-cli deploy my-less-project
     ```
   </TabItem>
 
   <TabItem value="npm" label="npm">
     ```bash
     npm i -g @chuva.io/less-cli
-    less-cli deploy my-application
+    less-cli deploy my-less-project
   ```
   </TabItem>
 
   <TabItem value="yarn" label="yarn">
     ```bash
     yarn global add @chuva.io/less-cli
-    less-cli deploy my-application
+    less-cli deploy my-less-project
     ```
   </TabItem>
 
@@ -41,53 +41,59 @@ Deploying the following structure would give you the output below.
 ```
 ─ less
   └─ apis
-     └─ chat
+     └─ demo
      └─ webhooks
   └─ sockets
      └─ realtime_chat
+  └─ topics
+     └─ user_created
+  └─ functions
+     └─ sum
+  
 ```
 
 ```bash
-[less] Building... ⚙️
-[less] Build complete ✅
-[less] Deploying... 🚀
-[less] Deployment complete ✅
-[less] Resources
-[less]   - API URLs
-[less]     - chat: https://a2m1n3.execute-api.eu-west-1.amazonaws.com
-[less]     - webhooks: https://n2s9n5.execute-api.eu-west-1.amazonaws.com
-[less]   - Web Socket URLs
-[less]     - realtime_chat: wss://10l06n.execute-api.eu-west-1.amazonaws.com
-[less] 🇨🇻
+[less-cli] Building... ⚙️
+[less-cli] Build complete ✅
+[less-cli] Deploying... 🚀
+[less-cli] Deployment complete ✅
+[less-cli] Resources
+[less-cli]   - API URLs
+[less-cli]     - chat: https://[PROJECT_NAME]-chat.api.eu-0.a83b464c9.less.chuva.cv
+[less-cli]     - webhooks: https://[PROJECT_NAME]-webhooks.api.eu-0.a83b464c9.less.chuva.cv
+[less-cli]     - topics: https://[PROJECT_NAME]-topics.api.eu-0.a83b464c9.less.chuva.cv
+[less-cli]     - functions: https://[PROJECT_NAME]-functions.api.eu-0.a83b464c9.less.chuva.cv
+[less-cli]   - Web Socket URLs
+[less-cli]     - realtime_chat: wss://[PROJECT_NAME]-realtime-chat.ws.eu-0.a83b464c9.less.chuva.cv
+[less-cli] 🇨🇻
 ```
 
 :::tip Encryption built in
 With Less your traffic is secure on AWS using `https` and `wss` automatically.
 :::
 
-## Deploy Static Websites
-
+## Deploy Static Website
 In order to deploy your static content, execute `less-cli deploy --static` with your application name.
 
 <Tabs groupId="package-manager" queryString="package-manager">
 
   <TabItem value="npx" label="npx">
     ```bash
-    npx @chuva.io/less-cli deploy --static my-application
+    npx @chuva.io/less-cli deploy --static my-less-project
     ```
   </TabItem>
 
   <TabItem value="npm" label="npm">
     ```bash
     npm i -g @chuva.io/less-cli
-    less-cli deploy --static my-application
+    less-cli deploy --static my-less-project
   ```
   </TabItem>
 
   <TabItem value="yarn" label="yarn">
     ```bash
     yarn global add @chuva.io/less-cli
-    less-cli deploy --static my-application
+    less-cli deploy --static my-less-project
     ```
   </TabItem>
 
@@ -102,12 +108,12 @@ Deploying the following structure would give you the output below.
 ```
 
 ```bash
-[less] Building... ⚙️
-[less] Build complete ✅
-[less] Deploying... 🚀
-[less] Deployment complete ✅
-[less] Resources
-[less] 	 - Websites URLs
-[less] 	   - http://my-application-demo-website.s3-website-eu-west-1.amazonaws.com
-[less] 🇨🇻
+[less-cli] Building... ⚙️
+[less-cli] Build complete ✅
+[less-cli] Deploying... 🚀
+[less-cli] Deployment complete ✅
+[less-cli] Resources
+[less-cli] 	 - Websites URLs
+[less-cli]   - http://[PROJECT_NAME]-[WEBSITE_NAME]-143286079.s3-website-eu-west-1.amazonaws.com
+[less-cli] 🇨🇻
 ```

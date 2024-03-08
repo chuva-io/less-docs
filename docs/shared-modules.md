@@ -5,14 +5,14 @@ sidebar_position: 10
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Shared Code
+# Shared Modules
 
-In Less, all of your functions are isolated serverless functions. This means that you cannot import code from folders outside of your function's directory.
+In Less, all of your functions (API routes, Web Socket channels & connection handlers, Topic Subscribers, CRON jobs, and Functions) are isolated serverless functions. This means that you cannot import code between functions. 
 
-## Creating Shared Modules
+Less solves this by allowing you to create shared modules. The only change in your code is where you import from.
 
-In order to share code between your Less functions you can add your modules to the `shared` folder.
-
+## Creating Shared Module
+In order to share code between your Less functions, add your modules to the `shared` folder.
 ```bash
 mkdir -p less/shared
 ```
@@ -39,38 +39,18 @@ With Less you can organize your modules as you normally would.
                   └─ schema.js
     ```
   </TabItem>
-
-  <TabItem value="py" label="Python">
-    ```bash
-    ─ less
-      └─ shared
-        └─ models
-            └─ __init__.py
-            └─ User
-              └─ __init__.py
-              └─ create
-                  └─ __init__.py
-                  └─ schema.py
-    ```
-  </TabItem>
   
 </Tabs>
 
 ## Importing Shared Modules
 
-Here's an example of importing the example Model above:
+Here's how you would import the example Model above:
 
 <Tabs groupId="programming-language" queryString="programming-language">
   
   <TabItem value="nodejs" label="Node.js">
     ```js showLineNumbers title="less/apis/demo/hello/get.js"
     const { User } = require('models');
-    ```
-  </TabItem>
-
-  <TabItem value="py" label="Python">
-    ```py showLineNumbers title="less/apis/demo/hello/get.py"
-    from models import User
     ```
   </TabItem>
   

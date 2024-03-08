@@ -76,20 +76,63 @@ mkdir -p less/statics/demo-website
   
 </Tabs>
 
+:::tip
+You can easily migrate your React app or any other static site by simply adding the site content to the /less/statics directory. Here's an example of building a React app for Less:
+```bash
+BUILD_PATH='less/statics/demo-website' react-scripts build
+```
+:::
+
+## Deploy your static website
+
+In order to deploy your static content, execute `less-cli deploy --static` with your application name.
+
+<Tabs groupId="package-manager" queryString="package-manager">
+
+  <TabItem value="npx" label="npx">
+    ```bash
+    npx @chuva.io/less-cli deploy --static my-less-project
+    ```
+  </TabItem>
+
+  <TabItem value="npm" label="npm">
+    ```bash
+    npm i -g @chuva.io/less-cli
+    less-cli deploy --static my-less-project
+  ```
+  </TabItem>
+
+  <TabItem value="yarn" label="yarn">
+    ```bash
+    yarn global add @chuva.io/less-cli
+    less-cli deploy --static my-less-project
+    ```
+  </TabItem>
+
+</Tabs>
+
+Once the deployment is complete you will be able to find your website URL under *Resources* in the output:
+```bash
+[less-cli] Deployment complete ✅
+[less-cli] Resources
+[less-cli] - Websites URLs
+[less-cli]   - http://[PROJECT_NAME]-[WEBSITE_NAME]-143286079.s3-website-eu-west-1.amazonaws.com
+[less-cli] 🇨🇻
+```
+
+
 ## Custom Domain
-Less also allows you to use a custom domain with your static websites. Use the following command to set up a custom domain for a specific static site:
+Less also allows you to configure your DNS settings in order to use a custom domain with your static websites. Use the following command to get new NS records for your custom domain:
 ```bash
 npx @chuva.io/less-cli domains --project-name PROJECT_NAME --static-name STATIC_NAME --custom-domain CUSTOM_DOMAIN
 ```
 
-For example, if we want to use a custom domain `demo-website.com` for the `demo-website` project, the command will be the following:
-
+For example, if we want to use a custom domain `demo-website.com` for the `demo-website` website in our `my-less-project` application, we can use the following command:
 ```bash
-npx @chuva.io/less-cli domains --project-name website --static-name demo-website --custom-domain demo-website.com
+npx @chuva.io/less-cli domains --project-name my-less-project --static-name demo-website --custom-domain demo-website.com
 ```
 
-The output will be the following:
-
+Resulting in the following example output:
 ```bash
 [less-cli] Connecting to the Less Server...
 [less-cli] NS Records
@@ -102,8 +145,12 @@ The output will be the following:
 │    3    │ 'NS' │ 'demo-website.com'                 │ 'ns-000.exampledns.com'   │
 └─────────┴──────┴────────────────────────────────────┴───────────────────────────┘
 ```
-Now add those DNS Records on you DNS provider and wait for the DNS to propagate, and that it 🚀
+Add the NS records to your DNS provider and wait for the DNS to propagate.
 
 :::info
 Most DNS updates take effect within an hour, but could take up to 48 hours to update globally.
+:::
+
+:::info Less Static Websites Documentation
+Read the [Less static websites documentation](/static-websites) to learn more.
 :::

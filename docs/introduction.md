@@ -39,9 +39,3 @@ Go, Rust, C#, and more coming soon...
 <Icon icon="logos:gopher" height="100" />
 <Icon icon="logos:rust" height="100" />
 <Icon icon="logos:c-sharp" height="100" />
-
----
-
-:::warning
-The high level of simplicity with Less will make you feel like something is missing... 😜
-:::

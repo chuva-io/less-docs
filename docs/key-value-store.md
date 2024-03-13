@@ -72,10 +72,10 @@ Delete a **key** and its **value**.
 </Tabs>
 
 ## Subscribe to KVS changes
-The Key-Value Store (KVS) allows you to subscribe to a stream of real-time updates by leveraging Less's [Topics](/fanout) feature.
+The Key-Value Store (KVS) allows you to subscribe to a stream of real-time updates by leveraging Less's [Topics/Subscribers (Pub/Sub)](/topics_subscribers) feature.
 
 :::info Less Topics Documentation
-Read the [Less Topics documentation](/fanout) to learn more.
+Read the [Less Topics/Subscribers (Pub/Sub) documentation](/topics_subscribers) to learn more.
 :::
 
 ### Subscribe to the `kvs_created` Topic
@@ -209,6 +209,6 @@ Here is an example `kvs_deleted` event payload:
 }
 ```
 
-:::info Less Topics Documentation
-Read the [Less Topics documentation](/fanout) to learn more.
+:::info Less Topics/Subscribers (Pub/Sub) Documentation
+Read the [Less Topics/Subscribers (Pub/Sub) documentation](/topics_subscribers) to learn more.
 :::

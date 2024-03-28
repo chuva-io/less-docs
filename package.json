@@ -8,7 +8,7 @@
   "scripts": {
     "develop": "docusaurus start",
     "build": "docusaurus build --out-dir less/statics/site",
-    "deploy": "less-cli deploy --static less-site"
+    "deploy": "less-cli deploy --static $LESS_APPLICATION_NAME"
   },
   "dependencies": {
     "@docusaurus/core": "3.0.0",

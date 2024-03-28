@@ -8,7 +8,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Less Documentation',
+  title: 'Less',
   tagline: 'Less is more',
   favicon: 'img/favicon.ico',
 
@@ -24,7 +24,7 @@ const config = {
   projectName: 'less-site', // Usually your repo name.
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'throw',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -43,6 +43,13 @@ const config = {
           routeBasePath: '/',
           sidebarPath: './sidebars.js',
           editUrl: 'https://github.com/chuva-io/less-site/blob/main',
+        },
+        blog: {
+          blogTitle: 'Less Blog',
+          blogDescription: 'Blog discussing Less including updates, roadmaps, news, and more.',
+          postsPerPage: 'ALL',
+          blogSidebarTitle: 'All articles',
+          blogSidebarCount: 'ALL',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -66,13 +73,28 @@ const config = {
     ({
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
+      metadata: [
+        {name: 'keywords', content: 'fault tolerant, event-driven, microservices, javascript, typescript, rust, go, python, serverless, aws, google cloud, gcp, azure, terraform, infrastructure as code, devops, cloud, distributed systems'},
+      ],
       navbar: {
-        title: 'Less Documentation (beta)',
+        title: 'Less Documentation',
         logo: {
           alt: 'Chuva logo',
           src: 'img/chuva-logo-h-light.svg',
           srcDark: 'img/chuva-logo-h-dark.svg',
-        }
+        },
+        items: [
+          {
+            to: 'blog',
+            label: 'Blog',
+            position: 'right',
+          },
+          {
+            to: '/',
+            label: 'Documentation',
+            position: 'right',
+          },
+        ]
       },
       footer: {
         style: 'dark',

@@ -1,11 +1,12 @@
-name: Deploy with Less.
+name: Deploy to Stage with Less.
 on:
-  push:
+  pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: production
+    environment: stage
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
@@ -19,4 +20,5 @@ jobs:
       - name: Deploy site using Less
         env:
           LESS_TOKEN: ${{ secrets.LESS_TOKEN }}
+          LESS_APPLICATION_NAME: ${{ vars.LESS_APPLICATION_NAME }}
         run: yarn deploy

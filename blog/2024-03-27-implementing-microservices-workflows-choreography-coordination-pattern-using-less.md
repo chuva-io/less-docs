@@ -7,7 +7,6 @@ description: >
   Implementation is in Javascript with Python, Go, and Rust examples coming soon.
 authors: nilson_nascimento
 tags: [systems architecture]
-image: https://media.licdn.com/dms/image/D4D03AQE_3kQml2oK4Q/profile-displayphoto-shrink_800_800/0/1680823082808?e=1717027200&v=beta&t=K5qUBKYc03uifuEVT7beYZ3VyCZ_Yq8Mi9nhXIcOOUE
 hide_table_of_contents: true
 ---
 

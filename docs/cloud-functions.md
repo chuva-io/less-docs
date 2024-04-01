@@ -32,6 +32,17 @@ mkdir less/functions/sum
     }
     ```
   </TabItem>
+
+  <TabItem value="py" label="Python">
+    ```bash
+    touch less/functions/sum/__init__.py
+    ```
+
+    ```py title="less/functions/sum/__init__.py" showLineNumbers
+    def process(data):
+      return data['a'] + data['b']
+    ```
+  </TabItem>
   
 </Tabs>
 
@@ -40,7 +51,7 @@ Less offers 2 ways to call cloud functions:
 1. Using the `functions` module in the Less SDK.
 2. Using the Less Functions REST API.
 
-### Send Messages Using the SDK
+### Using the SDK
 <Tabs>
   <TabItem value="nodejs" label="Node.js">
     Import `functions` from `@chuva.io/less` to call the cloud function. The function payloads are JSON objects.
@@ -52,12 +63,29 @@ Less offers 2 ways to call cloud functions:
     // Result: 7
     ```
   </TabItem>
+
+  <TabItem value="py" label="Python">
+    Import `functions` from `less` to call the function and process your payload in order to retrieve the response.
+    
+    ```py showLineNumbers
+    from less import functions
+
+    sum_result = functions.sum({ 'a': 3, 'b': 4 })
+    print('Result:', sum_result)
+    # Result: 7
+    ```
+  </TabItem>
   
 </Tabs>
 
 ---
 
 Let's create a `GET /sum` route that will return the sum of 2 numbers using our `sum` cloud function.
+
+```bash
+mkdir less/apis/demo/sum
+```
+
 <Tabs groupId="programming-language" queryString="programming-language">
   <TabItem value="nodejs" label="Node.js">
   ```bash
@@ -76,6 +104,25 @@ Let's create a `GET /sum` route that will return the sum of 2 numbers using our 
     response.body = `The sum is: ${sum_result}`
     return response;
   };
+  ```
+  </TabItem>
+
+  <TabItem value="py" label="Python">
+  ```bash
+  touch less/apis/demo/sum/get.py
+  ```
+
+  ```py title="less/apis/demo/sum/get.py" showLineNumbers
+  from less import functions
+
+  def process(request, response):
+    a = request['query']['a']
+    b = request['query']['b']
+    response['body'] = functions.sum({
+      'a': int(a),
+      'b': int(b)
+    })
+    return response
   ```
   </TabItem>
 
@@ -112,11 +159,11 @@ You can now deploy and call your `GET /sum` route to test your `sum` cloud funct
 
 2. Execute your `GET /sum` request.
 ```bash
-curl [FUNCTIONS_URL]/sum?a=1&b=2
-# The sum is: 3
+curl "[FUNCTIONS_URL]/sum?a=1&b=2"
+# 3
 ```
 
-### Send Messages Using the REST API
+### Using the REST API
 When using the Cloud Functions feature, Less automatically creates a Functions REST API for you. You can use the API to call cloud functions from anywhere, making it easier to integrate Less with your existing systems.
 
 1. Deploy your function.
@@ -153,7 +200,7 @@ When using the Cloud Functions feature, Less automatically creates a Functions R
 
 3. Send a message to your `sum` function using the `POST /functions/{function_name}` route.
 ```bash
-curl -X POST -d '{"a": 1, "b": 2}' [FUNCTIONS_BASE_URL]/functions/user_created
+curl -X POST -d '{"a": 1, "b": 2}' [FUNCTIONS_BASE_URL]/functions/sum
 # 3
 ```
 

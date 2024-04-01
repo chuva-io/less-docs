@@ -60,6 +60,22 @@ mkdir less/topics/user_created/send_to_analytics
     };
     ```
   </TabItem>
+
+  <TabItem value="py" label="Python">
+    ```bash
+    touch less/topics/user_created/send_welcome_email/__init__.py
+    ```
+
+    ```py title="less/topics/user_created/send_welcome_email/__init__.py" showLineNumbers
+    def process(user):
+      print(f"Sending a welcome email to {user['email']}")
+    ```
+
+    ```py title="less/topics/user_created/send_to_analytics/__init__.py" showLineNumbers
+    def process(user):
+      print(f"Sending user \"{user['name']}\" to analytics")
+    ```
+  </TabItem>
   
 </Tabs>
 
@@ -77,6 +93,16 @@ Use the Less `topics` module to send messages to all of a topic's subscribers.
     const { topics } = require('@chuva.io/less');
 
     await topics.user_created.publish(message);
+    ```
+  </TabItem>
+
+  <TabItem value="py" label="Python">
+    Import `topics` from `less` to send messages to all subscribers.
+    
+    ```py showLineNumbers
+    from less import topics
+
+    topics.user_created.publish(message)
     ```
   </TabItem>
 </Tabs>
@@ -104,6 +130,22 @@ Let's create a `POST /users` route that will send the user payload to the `user_
     // Publish the new user to the `user_created` topic.
     await topics.user_created.publish(new_user);
   };
+  ```
+  </TabItem>
+
+  <TabItem value="py" label="Python">
+  ```bash
+  touch less/apis/demo/users/post.py
+  ```
+
+  ```py title="less/apis/demo/users/post.py" showLineNumbers
+  import json
+
+  def process(request, response):
+    body = json.loads(request['body'])
+    user = body['user']
+    user['id'] = 'my-fake-id'
+    topics.user_created.publish(user)
   ```
   </TabItem>
 
@@ -263,6 +305,18 @@ In order to see this in action we can force a crash in one of our subscribers:
       throw new Error('This subscriber will fail to process messages.');
       console.log(`Sending a welcome email to ${user.email}`);
     };
+    ```
+  </TabItem>
+
+  <TabItem value="py" label="Python">
+    ```bash
+    touch less/topics/user_created/send_welcome_email/__init__.py
+    ```
+
+    ```py title="less/topics/user_created/send_welcome_email/__init__.py" showLineNumbers
+    def process(user):
+      raise SyntaxError('This subscriber will fail to process messages.')
+      print(f"Sending a welcome email to {user['email']}")
     ```
   </TabItem>
   

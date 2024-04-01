@@ -51,6 +51,18 @@ Let's create a `GET /hello` route that returns *"Hello, world."* in the response
   };
   ```
   </TabItem>
+
+  <TabItem value="py" label="Python">
+  ```bash
+  touch less/apis/demo/hello/get.py
+  ```
+
+  ```py title="less/apis/demo/hello/get.py" showLineNumbers
+  def process(request, response):
+    response['body'] = 'Hello, world.'
+    return response
+  ```
+  </TabItem>
   
 </Tabs>
 
@@ -71,6 +83,23 @@ Let's create a `POST /hello` route. We will accept a `name` in the body and retu
     response.statusCode = 201;
     return response;
   };
+  ```
+  </TabItem>
+
+  <TabItem value="py" label="Python">
+  ```bash
+  touch less/apis/demo/hello/post.py
+  ```
+
+  ```py title="less/apis/demo/hello/post.py" showLineNumbers
+  import json
+
+  def process(request, response):
+    body = json.loads(request['body'])
+    name = body['name']
+    response['body'] = f"Hello, {name}."
+    response['statusCode'] = 201
+    return response
   ```
   </TabItem>
 
@@ -107,6 +136,20 @@ mkdir less/apis/demo/hello/{name}
   };
   ```
   </TabItem>
+
+  <TabItem value="py" label="Python">
+  ```bash
+  touch less/apis/demo/hello/{name}/get.py
+  ```
+
+  Here's how we can access the value of `name` from the route path:
+  ```py {2} title="less/apis/demo/hello/{name}/get.py" showLineNumbers
+  def process(request, response):
+    name = request['params']['name']
+    response['body'] = f"Hello, {name}."
+    return response
+  ```
+  </TabItem>
   
 </Tabs>
 
@@ -133,6 +176,14 @@ You can optionally set the response HTTP status code through the `statusCode` pr
   ```
   </TabItem>
 
+  <TabItem value="py" label="Python">
+  ```py {2} title="less/apis/demo/hello/post.py" showLineNumbers
+  def process(request, response):
+    response['statusCode'] = 204
+    return response    
+  ```
+  </TabItem>
+  
 </Tabs>
 
 ### Headers
@@ -156,6 +207,15 @@ Here's how we can access the *Accept* header in a request and set the *Content-T
   };
   ```
   </TabItem>
+
+  <TabItem value="py" label="Python">
+  ```py {2} title="less/apis/demo/hello/get.py" showLineNumbers
+  def process(request, response):
+      accept_header = request['headers']['Accept']
+      response['body'] = accept_header
+      return response
+  ```
+  </TabItem>
   
 </Tabs>
 
@@ -176,13 +236,23 @@ Convert your data as needed.
 <Tabs groupId="programming-language" queryString="programming-language">
   
   <TabItem value="nodejs" label="Node.js">
-  ```js {2,4} title="less/apis/demo/hello/get.js" showLineNumbers
+  ```js {2,4} title="less/apis/demo/hello/post.js" showLineNumbers
   exports.process = async (request, response) => {
     const request_data = JSON.parse(request.body);
     const name = request_data.name;
     response.body = 'Hello, ' + name + '.';
     return response;
   };
+  ```
+  </TabItem>
+
+  <TabItem value="py" label="Python">
+  ```py {4-5} title="less/apis/demo/hello/post.py" showLineNumbers
+  import json
+
+  def process(request, response):
+    body = json.loads(request['body'])
+    name = body['name']
   ```
   </TabItem>
   
@@ -207,6 +277,13 @@ Here's how we can access the value of `name` passed as a query param (e.g. `GET 
     }
     return response;
   };
+  ```
+  </TabItem>
+
+  <TabItem value="py" label="Python">
+  ```py {2} title="less/apis/demo/hello/get.py" showLineNumbers
+  def process(request, response):
+      name = request['query']['name'] # 'world'
   ```
   </TabItem>
   

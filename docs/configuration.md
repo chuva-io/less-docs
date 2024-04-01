@@ -1,8 +1,10 @@
 ---
-sidebar_position: 12
+sidebar_position: 13
 ---
 
-# Environment Variables
+# Configuration
+
+## Environment Variables
 
 In case you need access to environment variables in your code you will need to declare them in your `less.config` file in the root of your project.
 

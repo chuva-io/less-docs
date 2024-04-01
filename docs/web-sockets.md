@@ -43,6 +43,19 @@ mkdir less/sockets/demo/connect
     };
     ```
   </TabItem>
+
+  <TabItem value="py" label="Python">
+    ```bash
+    touch less/sockets/demo/connect/__init__.py
+    ```
+
+    ```py title="less/sockets/demo/connect/__init__.py" showLineNumbers
+    def process(data):
+      connection_id = data.get('connection_id')
+      print(f'Client connected: {connection_id}');
+      # Save the client's connection_id so you can send messages to them later.
+    ```
+  </TabItem>
   
 </Tabs>
 
@@ -128,6 +141,18 @@ Here's an example of how you can save your `connection_id` using Less's built in
     };
     ```
   </TabItem>
+
+  <TabItem value="py" label="Python">
+    ```py title="less/sockets/demo/connect/__init__.py" showLineNumbers
+    from less import kvs
+
+    def process(data):
+      connection_id = data.get('connection_id')
+      print(f'Client connected: {connection_id}');
+      # Save your socket connection_id
+      kvs.set('DEMO_SOCKET_CONNECTION_ID', connection_id)
+    ```
+  </TabItem>
   
 </Tabs>
 
@@ -151,6 +176,18 @@ mkdir less/sockets/demo/disconnect
     };
     ```
   </TabItem>
+
+  <TabItem value="py" label="Python">
+    ```bash
+    touch less/sockets/demo/disconnect/__init__.py
+    ```
+
+    ```py title="less/sockets/demo/disconnect/__init__.py" showLineNumbers
+    def process(data):
+      connection_id = data.get('connection_id')
+      # Delete the connection_id from your database.
+    ```
+  </TabItem>
   
 </Tabs>
 
@@ -169,11 +206,34 @@ We can use the `connection_id` obtained in the socket `connect` handler in order
     This allows you to send messages to an array of client connection IDs for the designated socket.
     
     Here's an example of publishing a message to clients connected to a `demo` socket:
-    ```jsx showLineNumbers
+    ```jsx {3-6} showLineNumbers
+    const { sockets } = require('@chuva.io/less');
+    
     await sockets.demo.publish(
       message,
       [connection_id_1, connection_id_2]
     );
+    ```
+  </TabItem>
+
+  <TabItem value="py" label="Python">
+    Import `sockets` from `less` to send messages to your socket's clients.
+    
+    ```py showLineNumbers
+    from less import sockets
+    ```
+
+    Now you can send messages to an array of client connection IDs for the designated socket.
+
+    Let's send a message to our `demo` socket:
+
+    ```py {3-6} showLineNumbers
+    from less import sockets
+
+    sockets.demo.publish(
+      message,
+      [connection_id_1, connection_id_2]
+    )
     ```
   </TabItem>
   
@@ -203,6 +263,29 @@ Let's create a `POST /hello` route that will send messages to a connected client
     response.statusCode = 204;
     return response;
   };
+  ```
+  </TabItem>
+
+  <TabItem value="py" label="Python">
+  ```bash
+  touch less/apis/demo/hello/post.py
+  ```
+
+  ```py title="less/apis/demo/hello/post.py" showLineNumbers
+  from less import kvs, sockets
+
+  def process(request, response):
+    # Get the connection_id from kvs.
+    CONNECTION_ID = kvs.get('DEMO_SOCKET_CONNECTION_ID')
+
+    # Publish a message to the specified connections to the `demo` socket.
+    sockets.demo.publish(
+      'Hello from POST /hello',
+      [CONNECTION_ID]
+    )
+
+    response['statusCode'] = 204
+    return response
   ```
   </TabItem>
 
@@ -269,6 +352,18 @@ mkdir less/sockets/demo/my_channel
       console.log(`Received message from: ${connection_id}`);
       console.log(`Message: ${data}`);
     };
+    ```
+  </TabItem>
+
+  <TabItem value="py" label="Python">
+    ```bash
+    touch less/sockets/demo/my_channel/__init__.py
+    ```
+
+    ```py title="less/sockets/demo/my_channel/__init__.py" showLineNumbers
+    def process(input_data):
+      data = input_data.get('data')
+      connection_id = input_data.get('connection_id')
     ```
   </TabItem>
   
@@ -352,6 +447,20 @@ Send a message back to the client to test:
       const message = `You said: "${JSON.stringify(data)}"`;
       await sockets.demo.publish(message, [connection_id]);
     };
+    ```
+  </TabItem>
+
+  <TabItem value="py" label="Python">
+    ```py {1,8-9} title="less/sockets/demo/my_channel/__init__.py" showLineNumbers
+    from less import sockets
+
+    def process(input_data):
+      data = input_data.get('data')
+      connection_id = input_data.get('connection_id')
+
+      # Publish a message to the specified connections to the `demo` socket.
+      message = f'You said: "{data}"'
+      sockets.demo.publish(message, [connection_id])
     ```
   </TabItem>
   

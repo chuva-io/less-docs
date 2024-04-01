@@ -30,6 +30,17 @@ mkdir -p less/crons/generate_daily_report
     };
     ```
   </TabItem>
+
+  <TabItem value="py" label="Python">
+    ```bash
+    touch less/crons/generate_daily_report/__init__.py
+    ```
+
+    ```py title="less/crons/generate_daily_report/__init__.py" showLineNumbers
+    def process():
+      # Your code here
+    ```
+  </TabItem>
   
 </Tabs>
 
@@ -42,4 +53,20 @@ In the example of the `generate_daily_report` CRON the envoronment variable woul
 export CRON_GENERATE_DAILY_REPORT="0 0 * * ? *"
 ```
 
+:::note Remember to add the env var to your less.config.
+```bash
+touch less.config
+```
+
+```yaml title="less.config" 
+env_vars:
+   - CRON_GENERATE_DAILY_REPORT
+```
+
+:::info Less Configuration Documentation
+Read the [Less configuration documentation](/configuration#environment-variables) to learn more about setting up environment variables.
+:::
+
+:::tip
 Visit the [AWS Cron expressions reference](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cron-expressions.html) for CRON expression syntax documentation.
+:::

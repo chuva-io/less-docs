@@ -45,7 +45,7 @@ mkdir -p less/crons/generate_daily_report
 </Tabs>
 
 ## Set CRON Schedule
-In order to set the CRON schedule you will need to configure them as [Environment Variables](/environment-variables). The name of the variable should be `CRON_` + the uppercase CRON folder name.
+In order to set the CRON schedule you will need to configure them as [Environment Variables](/configuration#environment-variables). The name of the variable should be `CRON_` + the uppercase CRON folder name.
 
 In the example of the `generate_daily_report` CRON the envoronment variable would be `CRON_GENERATE_DAILY_REPORT`:
 

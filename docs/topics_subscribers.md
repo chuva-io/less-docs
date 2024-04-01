@@ -374,7 +374,7 @@ export MY_LESS_PROJECT=my_less_project
 ```
 
 :::info Less Environment Variables Documentation
-Read the [Less environment variables documentation](/environment-variables) to learn more.
+Read the [Less environment variables documentation](/configuration#environment-variables) to learn more.
 :::
 
 

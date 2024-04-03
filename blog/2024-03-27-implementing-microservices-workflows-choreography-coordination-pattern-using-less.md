@@ -38,29 +38,23 @@ Here's what we will be building:
 ![Placing Food Order using Choreography Coordination Pattern diagram from Waswani's article](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*-4Z5zq5FCaNeFmaG4jgxfg.jpeg)
 
 ## Create your Less project
-Let's start by creating a project folder.
+Let's start by creating our project folder.
 ```bash
 mkdir food_delivery_system
-```
-
-Then we'll create our `less` folder.
-```bash
 cd food_delivery_system
-mkdir less
 ```
 
 ## 1. Create an order in the Order microservice.
 In order to get started we will create a `POST /orders` route which will create an `order` with an `id`.
 
 Let's create our `orders` API with our `POST /orders` route.
-
-```bash
-mkdir -p less/apis/orders/orders
-touch less/apis/orders/orders/post.js
-```
-
 <Tabs groupId="programming-language" queryString="programming-language">
-  <TabItem value="nodejs" label="Node.js">  
+  <TabItem value="nodejs" label="Node.js">
+  ```bash
+  less-cli create route --name orders --path /orders --verb post --language js
+  # File created: less/apis/orders/orders/post.js
+  ```
+
   ```js title="less/apis/orders/orders/post.js" showLineNumbers
   exports.process = async (request, response) => {
     console.log('[ORDER SERVICE] Creating order');
@@ -140,14 +134,8 @@ For simplicity, we'll just pretend to create an order by generating a UUID for t
   </TabItem>
 </Tabs>
 
-Finally we will emit an `order_placed` event allowing the payment service to continue processing the workflow.
+Finally we will emit an `order_placed` event allowing the payment service to continue processing the workflow. Let's publish the `order` payload to the `order_placed` topic.
 
-Let's create an `order_placed` topic.
-```bash
-mkdir -p less/topics/order_placed
-```
-
-Finally, let's publish the `order` payload to the `order_placed` topic.
 <Tabs groupId="programming-language" queryString="programming-language">
   <TabItem value="nodejs" label="Node.js">
     ```js {2,15} title="less/apis/orders/orders/post.js" showLineNumbers
@@ -204,15 +192,12 @@ Check out the [Cross-Application Topics documentation](/topics_subscribers#cross
 Since Less is serverless, in terms of performance there is no tradeoff with this decision.
 :::
 
-Let's create our topic subscriber.
-```bash
-mkdir less/topics/order_placed/payment_service_process_payment
-```
-
+Let's create our `order_placed` topic and `payment_service_process_payment` subscriber.
 <Tabs groupId="programming-language" queryString="programming-language">
   <TabItem value="nodejs" label="Node.js">
     ```bash
-    touch less/topics/order_placed/payment_service_process_payment/index.js
+    less-cli create topic --name order_placed --subscribers payment_service_process_payment --language js
+    # File created: less/topics/order_placed/payment_service_process_payment/index.js
     ```
 
     ```js title="less/topics/order_placed/payment_service_process_payment/index.js" showLineNumbers
@@ -277,14 +262,11 @@ Once we finish processing our payment we should emit a `payment_success` event.
 Once a payment is successful, the Restaurant microservice continues the workflow by confirming the food order and publishing the `restaurant_confirmed_order` event.
 
 Let's process the `payment_success` event by creating the `restaurant_service_confirm_order` topic subscriber.
-```bash
-mkdir less/topics/payment_success/restaurant_service_confirm_order
-```
-
 <Tabs groupId="programming-language" queryString="programming-language">
   <TabItem value="nodejs" label="Node.js">
     ```bash
-    touch less/topics/payment_success/restaurant_service_confirm_order/index.js
+    less-cli create topic --name payment_success --subscribers restaurant_service_confirm_order --language js
+    # File created: less/topics/payment_success/restaurant_service_confirm_order/index.js
     ```
 
     ```js title="less/topics/payment_success/restaurant_service_confirm_order/index.js" showLineNumbers
@@ -347,20 +329,14 @@ Once we confirm our order we should emit the `restaurant_confirmed_order` event.
 
 Let's quickly create our 4 topic subscribers and their processors.
 
-```bash
-mkdir less/topics/restaurant_confirmed_order/order_service_update_order_status
-mkdir less/topics/restaurant_confirmed_order/notification_service_notify_user
-mkdir less/topics/restaurant_confirmed_order/delivery_partner_service_assign_delivery_partner
-mkdir less/topics/restaurant_confirmed_order/loyalty_service_add_loyalty_points
-```
-
 <Tabs groupId="programming-language" queryString="programming-language">
   <TabItem value="nodejs" label="Node.js">
     ```bash
-    touch less/topics/restaurant_confirmed_order/order_service_update_order_status/index.js
-    touch less/topics/restaurant_confirmed_order/notification_service_notify_user/index.js
-    touch less/topics/restaurant_confirmed_order/delivery_partner_service_assign_delivery_partner/index.js
-    touch less/topics/restaurant_confirmed_order/loyalty_service_add_loyalty_points/index.js
+    less-cli create topic --name restaurant_confirmed_order --subscribers order_service_update_order_status notification_service_notify_user delivery_partner_service_assign_delivery_partner loyalty_service_add_loyalty_points --language js
+    # File created: less/topics/restaurant_confirmed_order/order_service_update_order_status/index.js
+    # File created: less/topics/restaurant_confirmed_order/notification_service_notify_user/index.js
+    # File created: less/topics/restaurant_confirmed_order/delivery_partner_service_assign_delivery_partner/index.js
+    # File created: less/topics/restaurant_confirmed_order/loyalty_service_add_loyalty_points/index.js
     ```
 
     ```js title="less/topics/restaurant_confirmed_order/order_service_update_order_status/index.js" showLineNumbers
@@ -448,16 +424,12 @@ Let's make a small update to our `/topics/restaurant_confirmed_order/delivery_pa
 ## 6. Process the `delivery_partner_assigned` event in the Order and Notification microservices.
 Let's create 2 more processors, this time for the `delivery_partner_assigned` topic.
 
-```bash
-mkdir less/topics/delivery_partner_assigned/order_service_update_order_status
-mkdir less/topics/delivery_partner_assigned/notification_service_notify_user
-```
-
 <Tabs groupId="programming-language" queryString="programming-language">
   <TabItem value="nodejs" label="Node.js">
     ```bash
-    touch less/topics/delivery_partner_assigned/order_service_update_order_status/index.js
-    touch less/topics/delivery_partner_assigned/notification_service_notify_user/index.js
+    less-cli create topic --name delivery_partner_assigned --subscribers order_service_update_order_status notification_service_notify_user --language js
+    # File created: less/topics/delivery_partner_assigned/order_service_update_order_status/index.js
+    # File created: less/topics/delivery_partner_assigned/notification_service_notify_user/index.js
     ```
     
     ```js title="less/topics/delivery_partner_assigned/order_service_update_order_status/index.js" showLineNumbers
@@ -621,14 +593,14 @@ See the [Handling Failing Messages documentation](https://docs.less.chuva.io/top
 
 ### 4. Process the `restaurant_order_confirmation_failed` event in the Payment, Notification, and Order microservices.
 
-Let's create our `restaurant_order_confirmation_failed` topic and update our code to publish the failed order to it.
-
-```bash
-mkdir less/topics/restaurant_order_confirmation_failed
-```
-
+Let's update our code to publish the failed order to the `restaurant_order_confirmation_failed` topic.
 <Tabs groupId="programming-language" queryString="programming-language">
   <TabItem value="nodejs" label="Node.js">
+    ```bash
+    less-cli create topic --name restaurant_order_confirmation_failed --language js
+    # Folder created: less/topics/restaurant_order_confirmation_failed
+    ```
+
     ```js {1,17} title="less/topics/payment_success/restaurant_service_confirm_order/index.js" showLineNumbers
     const { topics } = require('@chuva.io/less');
 
@@ -670,19 +642,14 @@ mkdir less/topics/restaurant_order_confirmation_failed
   </TabItem>
 </Tabs>
 
-Now let's create the processors in each of the Payment, Notification, and Order services.
-
-```bash
-mkdir less/topics/restaurant_order_confirmation_failed/order_service_update_order_status
-mkdir less/topics/restaurant_order_confirmation_failed/notification_service_notify_user
-```
-
+Now let's create the `restaurant_order_confirmation_failed` topic and its  processors in each of the Payment, Notification, and Order services.
 <Tabs groupId="programming-language" queryString="programming-language">
   <TabItem value="nodejs" label="Node.js">
     ```bash
-    touch less/topics/restaurant_order_confirmation_failed/payment_service_initiate_payment_reversal/index.js
-    touch less/topics/restaurant_order_confirmation_failed/notification_service_notify_user/index.js
-    touch less/topics/restaurant_order_confirmation_failed/order_service_update_order_status/index.js
+    less-cli create topic --name restaurant_order_confirmation_failed --subscribers payment_service_initiate_payment_reversal notification_service_notify_user order_service_update_order_status --language js
+    # File created: less/topics/restaurant_order_confirmation_failed/payment_service_initiate_payment_reversal/index.js
+    # File created: less/topics/restaurant_order_confirmation_failed/notification_service_notify_user/index.js
+    # File created: less/topics/restaurant_order_confirmation_failed/order_service_update_order_status/index.js
     ```
     
     ```js title="less/topics/restaurant_order_confirmation_failed/payment_service_initiate_payment_reversal/index.js" showLineNumbers
@@ -729,13 +696,6 @@ mkdir less/topics/restaurant_order_confirmation_failed/notification_service_noti
 ### 5. Publish a `payment_reversed` event from the Payment microservice.
 
 Let's update the `restaurant_order_confirmation_failed/payment_service_initiate_payment_reversal` processor to emit a `payment_reversed` event.
-
-Once again, we'll create a topic.
-```bash
-mkdir less/topics/payment_reversed
-```
-
-And publish our event.
 <Tabs groupId="programming-language" queryString="programming-language">
   <TabItem value="nodejs" label="Node.js">
     ```js {1,7} title="less/topics/restaurant_order_confirmation_failed/payment_service_initiate_payment_reversal/index.js" showLineNumbers
@@ -770,15 +730,12 @@ And publish our event.
 
 Let's process our final event and finish building our system.
 
-First we need our topic processor.
-```bash
-mkdir less/topics/payment_reversed/notification_service_notify_user
-```
-
+First we need our topic and processor.
 <Tabs groupId="programming-language" queryString="programming-language">
   <TabItem value="nodejs" label="Node.js">
     ```bash
-    touch less/topics/payment_reversed/notification_service_notify_user/index.js
+    less-cli create topic --name payment_reversed --subscribers notification_service_notify_user --language js
+    # File created: less/topics/payment_reversed/notification_service_notify_user/index.js
     ```
     
     ```js title="less/topics/payment_reversed/notification_service_notify_user/index.js" showLineNumbers

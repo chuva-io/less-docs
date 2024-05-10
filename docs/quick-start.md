@@ -83,17 +83,17 @@ We can see that Less allows us to create all of our cloud resources using the CL
 <Tabs groupId="package-manager" queryString="package-manager">
   <TabItem value="npx" label="npx">
     ```bash
-    npx @chuva.io/less-cli create route
+    npx @chuva.io/less-cli create route -h
     ```
   </TabItem>
   <TabItem value="npm" label="npm">
     ```bash
-    less-cli create route
+    less-cli create route -h
     ```
   </TabItem>
   <TabItem value="yarn" label="yarn">
     ```bash
-    less-cli create route
+    less-cli create route -h
     ```
   </TabItem>
 </Tabs>
@@ -122,12 +122,12 @@ Options:
 :::
 
 ```
-npx @chuva.io/less-cli create route --name my_demo_api --language js --verb get --path "/hello"
-# File created: less/apis/my_demo_api/hello/get.js
+npx @chuva.io/less-cli create route --name demo --language js --verb get --path "/hello"
+# File created: less/apis/demo/hello/get.js
 ```
 
-We can see that this simply created a `less/apis/my_demo_api/hello/get.js` file with the code for our route.
-```javascript title="less/apis/my_demo_api/hello/get.js" showLineNumbers
+We can see that this simply created a `less/apis/demo/hello/get.js` file with the code for our route.
+```javascript title="less/apis/demo/hello/get.js" showLineNumbers
 exports.process = async (request, response) => {
   response.body = 'Hello, world.';
   return response;
@@ -188,17 +188,17 @@ In order to deploy your Less project simply `cd` into a directory with a `/less`
 <Tabs groupId="package-manager" queryString="package-manager">
   <TabItem value="npx" label="npx">
     ```bash
-    npx @chuva.io/less-cli deploy getting_started_with_less
+    npx @chuva.io/less-cli deploy getting-started-with-less
     ```
   </TabItem>
   <TabItem value="npm" label="npm">
     ```bash
-    less-cli deploy getting_started_with_less
+    less-cli deploy getting-started-with-less
     ```
   </TabItem>
   <TabItem value="yarn" label="yarn">
     ```bash
-    less-cli deploy getting_started_with_less
+    less-cli deploy getting-started-with-less
     ```
   </TabItem>
 </Tabs>
@@ -211,7 +211,7 @@ In order to deploy your Less project simply `cd` into a directory with a `/less`
 [less-cli] 🇨🇻
 [less-cli] Resources
 [less-cli]   - API URLs
-[less-cli]     - my_demo_api: https://getting-started-with-less-my-demo-api.api.eu-0.f86h...2725.less.chuva.cv
+[less-cli]     - demo: https://getting-started-with-less-my-demo-api.api.eu-0.f86h...2725.less.chuva.cv
 ```
 
 In your deployment output you will find your https-secure API URL. Use `curl` or your favorite client to see it working.

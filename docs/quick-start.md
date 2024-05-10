@@ -1,5 +1,8 @@
 ---
 sidebar_position: 2
+description: >
+  Deploy a Serverless Node.js REST API to AWS in 3 Minutes Using Less with automatic cloud resource provisioning, infinite auto-scaling, security best practices, fault-tolerance, and more by default.
+image: https://docs.less.chuva.io/img/quick-start-documentation.png
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 import Tabs from '@theme/Tabs';
@@ -7,127 +7,228 @@ import TabItem from '@theme/TabItem';
 
 # Quick Start
 
-**TLDR; Create a `GET /hello` route and deploy.**
+**Deploy a Serverless Node.js REST API to AWS in 3 Minutes Using Less.**
 
-## 1. Create a REST API route
-### Create a `demo` REST API
-```bash
-mkdir -p less/apis/demo
-```
+In this tutorial, we'll guide you through creating and deploying a "Hello, World" REST API, demonstrating the ease of use of Less. With automatic cloud resource provisioning, infinite auto-scaling, security best practices, fault-tolerance, and more by default, it's never been easier to get code to production!
 
-### Create a `/hello` route
-```bash
-mkdir less/apis/demo/hello
-```
+## Create your Less project
+Let's create our first Less project by creating a `/less` folder.
 
-### Create a `GET` request
-<Tabs groupId="programming-language" queryString="programming-language">
-  
-  <TabItem value="nodejs" label="Node.js">
-  ```bash
-  touch less/apis/demo/hello/get.js
-  ```
-  
-  ```js title="less/apis/demo/hello/get.js" showLineNumbers
-  module.exports.process = async (request, response) => {
-      response.body = 'Hello, world.';
-      return response;
-  };
-  ```
-  </TabItem>
-
-  <TabItem value="py" label="Python">
-  ```bash
-  touch less/apis/demo/hello/get.py
-  ```
-
-  ```py title="less/apis/demo/hello/get.py" showLineNumbers
-  def process(request, response):
-    response['body'] = 'Hello, world.'
-    return response
-  ```
-  </TabItem>
-  
-</Tabs>
-
-:::info Less REST API Documentation
-Read the [Less REST API documentation](/rest-apis).
+:::tip Add Less to your existing projects
+All you need is a `/less` folder to start using Less. Drop Less into an existing project and start leveraging Less features. Make your life easier!
 :::
 
+```bash
+mkdir -p getting_started_with_less/less
+```
 
-## 2. Deploy
+```bash
+cd getting_started_with_less
+```
+
+## Create your REST API route
+The Less CLI provides a suite of commands to streamline resource creation. Let's explore our options.
+
 <Tabs groupId="package-manager" queryString="package-manager">
 
   <TabItem value="npx" label="npx">
     ```bash
-    npx @chuva.io/less-cli deploy my-less-project
+    npx @chuva.io/less-cli create -h
     ```
   </TabItem>
 
   <TabItem value="npm" label="npm">
     ```bash
     npm i -g @chuva.io/less-cli
-    less-cli deploy my-less-project
+    ```
+    ```bash
+    less-cli create -h
     ```
   </TabItem>
 
   <TabItem value="yarn" label="yarn">
     ```bash
     yarn global add @chuva.io/less-cli
-    less-cli deploy my-less-project
+    ```
+    ```bash
+    less-cli create -h
     ```
   </TabItem>
 
 </Tabs>
 
-You just deployed a _globally available_ _serverless_ application with _infinite scale_ to _AWS_!
+```
+Usage: less-cli create [options] [command]
 
-:::info Less Deployments Documentation
-Read the [Less deployments documentation](/deploy) to learn more.
+Streamline your development by creating your Less files/resources and
+boilerplate code automatically.
+
+Options:
+  -h, --help                display help for command
+
+Commands:
+  route [options]           Creates your HTTP routes.
+  socket [options]          Creates your Web Sockets and socket channels or
+                            adds channels to existing sockets.
+  topic [options]           Creates Topics and Subscribers.
+  subscribers [options]     Creates Subscribers to Topics.
+  cron [options]            Creates your CRON Jobs.
+  shared-module [options]   Creates your Shared Code Modules.
+  cloud-function [options]  Creates your Cloud Functions.
+  help [command]            display help for command
+```
+
+We can see that Less allows us to create all of our cloud resources using the CLI. Let's focus on creating our HTTP route using the `less-cli create route` command. Let's see how it works.
+
+<Tabs groupId="package-manager" queryString="package-manager">
+  <TabItem value="npx" label="npx">
+    ```bash
+    npx @chuva.io/less-cli create route
+    ```
+  </TabItem>
+  <TabItem value="npm" label="npm">
+    ```bash
+    less-cli create route
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+    ```bash
+    less-cli create route
+    ```
+  </TabItem>
+</Tabs>
+
+```
+Usage: less-cli create route [options]
+
+Creates your HTTP routes.
+
+Required options: For options marked as required, if you do not specify an option you will be asked to specify it in interactive mode instead.
+
+Read the REST API Documentation: https://less.chuva.io/rest-apis
+
+Options:
+  -n, --name <name>          Required: The name of the API to create the route for. (E.g. "store_api")
+  -p, --path <path>          Required: The HTTP route path to create. (E.g. "/orders/{order_id}")
+  -l, --language <language>  Required: The programming language to use for the code. (choices: "js", "py")
+  -v, --verb <verb>          Required: The HTTP verb to use for the route. (choices: "get", "post", "put", "patch", "delete")
+  -h, --help                 display help for command
+```
+
+:::note
+- Less supports multiple REST APIs in the same project so we need to specify which API the route should be created for by using the `name` option. 
+- Since Less supports more than one programming language, you should also specify the `language`.
+- Finally we should specify the `verb` and the `path` of the route.
 :::
 
-## 3. Test
+```
+npx @chuva.io/less-cli create route --name my_demo_api --language js --verb get --path "/hello"
+# File created: less/apis/my_demo_api/hello/get.js
+```
 
-Once the deployment is complete you will be able to find your *Demo* API under *Resources* in the output:
+We can see that this simply created a `less/apis/my_demo_api/hello/get.js` file with the code for our route.
+```javascript title="less/apis/my_demo_api/hello/get.js" showLineNumbers
+exports.process = async (request, response) => {
+  response.body = 'Hello, world.';
+  return response;
+};
+```
+
+This is all you need to deploy your first Less project.
+
+## Create your Less account
+Let's create our account and deploy.
+
+#### Sign up
+Less works with the CLI as the primary interface. Creating an account is no different.
+
+Use the Less CLI to create your Less account. You'll be prompted to provide your `name`, `email`, and `password` followed by your email verification code.
+<Tabs groupId="package-manager" queryString="package-manager">
+  <TabItem value="npx" label="npx">
+    ```bash
+    npx @chuva.io/less-cli register
+    ```
+  </TabItem>
+  <TabItem value="npm" label="npm">
+    ```bash
+    less-cli register
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+    ```bash
+    less-cli register
+    ```
+  </TabItem>
+</Tabs>
 ```bash
-[less-cli] Deployment complete ✅
-[less-cli] Resources
-[less-cli] - API URLs
-[less-cli]  - Demo: https://[PROJECT_NAME]-[API_NAME].api.eu-0.a83b464c9.less.chuva.cv
+Create your Less account
+npx @chuva.io/less-cli register
+? Enter your name: Amilcar Cabral
+? Enter your email: amilcar.cabral@chuva.io
+? Enter your password: *************
+? Enter the verification code sent to your email: 0000
+```
+
+#### Sign in
+Use the CLI to sign in.
+
+After creating and verifying your account you should sign in in order to deploy your first project.
+```bash
+npx @chuva.io/less-cli login
+# ? Enter your email: youremail@gmail.com
+# ? Enter your password: *********
+# [less-cli] Login successful! Your LESS_TOKEN has been exported to your environment.
+```
+
+Now that you have logged in, let's create our route and deploy.
+
+## Deploy
+In order to deploy your Less project simply `cd` into a directory with a `/less` folder and run the Less CLI `deploy` command.
+
+<Tabs groupId="package-manager" queryString="package-manager">
+  <TabItem value="npx" label="npx">
+    ```bash
+    npx @chuva.io/less-cli deploy getting_started_with_less
+    ```
+  </TabItem>
+  <TabItem value="npm" label="npm">
+    ```bash
+    less-cli deploy getting_started_with_less
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+    ```bash
+    less-cli deploy getting_started_with_less
+    ```
+  </TabItem>
+</Tabs>
+
+```bash
+[less-cli] Building... ⚙️
+[less-cli] Build completed ✅
+[less-cli] Deploying... 🚀
+[less-cli] Deploy completed ✅
 [less-cli] 🇨🇻
+[less-cli] Resources
+[less-cli]   - API URLs
+[less-cli]     - my_demo_api: https://getting-started-with-less-my-demo-api.api.eu-0.f86h...2725.less.chuva.cv
 ```
 
-You can test the `GET /hello` route using **curl**:
+In your deployment output you will find your https-secure API URL. Use `curl` or your favorite client to see it working.
+
 ```bash
-curl [BASE_URL]/hello
+curl https://YOUR_LESS_API.less.chuva.cv/hello
+# Hello, world.%
 ```
 
-## 4. View Logs
-In order to view logs for your GET request you can execute the following command:
-<Tabs groupId="package-manager" queryString="package-manager">
+Does it get any easier than that?
 
-  <TabItem value="npx" label="npx">
-    ```bash
-    npx @chuva.io/less-cli log --project my-less-project --path apis/demo/hello/get
-    ```
-  </TabItem>
+---
 
-  <TabItem value="npm" label="npm">
-    ```bash
-    npm i -g @chuva.io/less-cli
-    less-cli log --project my-less-project --path apis/demo/hello/get
-    ```
-  </TabItem>
+:::tip Learn more about building REST APIs in Less
+Check out our [REST API documentation](/rest-apis) to learn how to add more features to your API or let the CLI guide you (`less-cli create route -h`).
+:::
 
-  <TabItem value="yarn" label="yarn">
-    ```bash
-    yarn global add @chuva.io/less-cli
-    less-cli log --project my-less-project --path apis/demo/hello/get
-    ```
-  </TabItem>
-
-</Tabs>
-
-:::info Less Logs Documentation
-Read the [Less logs documentation](/cli/function-logs) to learn more.
+:::tip Learn how to add other Less features to your existing projects
+Adding other Less features is just as easy. Learn how to add [Web Sockets](/web-sockets), [Topics/Subscribers (Pub/Sub)](/topics_subscribers), [CRON Jobs](/cron-jobs), [Key-Value Stores](/key-value-store), [File Storage](/file-storage), and more to your projects using Less.
 :::

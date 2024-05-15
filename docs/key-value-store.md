@@ -274,3 +274,35 @@ Here is an example `kvs_deleted` event payload:
 :::info Less Topics/Subscribers (Pub/Sub) Documentation
 Read the [Less Topics/Subscribers (Pub/Sub) documentation](/topics_subscribers) to learn more.
 :::
+
+## Time to live
+
+KVS offers a valuable feature called Time to Live (`TTL`), which allows you to set an expiration time for an item, leading to its automatic deletion after the specified period. To use this feature, you can add the `TTL` parameter as a third argument when creating a new item. While the first two parameters are required, the `TTL` parameter is optional and should be an integer representing the time in seconds until the item expires.
+
+<Tabs groupId="programming-language" queryString="programming-language">
+  <TabItem value="nodejs" label="Node.js">
+    ```jsx
+    const { kvs } = require('@chuva.io/less');
+
+    exports.process = async () => {
+      // This is two hours represented in seconds  
+      const ttl = 2 * 60 * 60;
+      
+      // The follow item should be expired within 2 hours after its creation
+      await kvs.set('UserName', 'Cesaria', ttl);
+    }
+    ```
+  </TabItem>
+  <TabItem value="py" label="Python">
+    ```python
+    from less import kvs
+
+    def process():
+      # This is two hours represented in seconds 
+      ttl = 2 * 60 * 60
+      
+      # The follow item should be expired within 2 hours after its creation
+      kvs.set('UserName', 'Cesaria', ttl)
+    ```
+  </TabItem>
+</Tabs>

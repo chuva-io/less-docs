@@ -222,8 +222,6 @@ Here's how we can access the *Accept* header in a request and set the *Content-T
 
 In this section we'll see how to access data in our HTTP requests.
 
-
-
 ### Body
 You can access the `request` and `response` body data through the `body` string.
 
@@ -284,6 +282,65 @@ Here's how we can access the value of `name` passed as a query param (e.g. `GET 
   ```py {2} title="less/apis/demo/hello/get.py" showLineNumbers
   def process(request, response):
       name = request['query']['name'] # 'world'
+  ```
+  </TabItem>
+  
+</Tabs>
+
+## Middleware
+Middleware is a widely utilized concept in web development, serving as an intermediary layer between the client and the server to manage various tasks. These tasks can include authenticating requests, parsing data, logging, and more. LESS offers a way to work with middleware similar to how middleware is handled in a Node.js Express application. In your API route, in addition to passing the main process function, you can also pass an array of middleware functions to your route. This approach allows each middleware to process the request sequentially before it reaches the main handler.
+
+<Tabs groupId="programming-language" queryString="programming-language">
+  <TabItem value="nodejs" label="Node.js">
+
+  ```jsx {29} title="less/apis/demo/hello/get.js" showLineNumbers
+  // Middleware function structure
+  const middlewareFunction = async (request, response, next) => {
+    // Add your middleware logic here
+
+    // Call next() to proceed to the next middleware in the stack,
+    // or to the route handler if this is the last middleware
+    next();
+  };
+
+  module.exports = {
+    middlewares: [middlewareFunction],
+    process: async (request, response) => {
+      // Add your route handling logic here
+
+      // For example, setting a response and sending the response,
+      // by default status code is 200
+      response.body = JSON.stringify({ message: "Success" });
+
+      return response;
+    }
+  }
+  ```
+  </TabItem>
+
+  <TabItem value="py" label="Python">
+
+  ```py {37} title="less/apis/demo/hello/get.py" showLineNumbers
+  import json
+  
+  # Middleware function structure  
+  def middlewareFunction(request, response, next):
+    # Add your middleware logic here
+
+    # Call next() to proceed to the next middleware in the stack,
+    # or to the route handler if this is the last middleware
+    next()
+
+  middlewares = [middlewareFunction]
+
+  def process(request, response):
+    # Add your route handling logic here
+
+    # For example, setting a response and sending the response,
+    # by default status code is 200
+    response['body'] = json.dumps({ 'message': 'Success' })
+
+    return response
   ```
   </TabItem>
   

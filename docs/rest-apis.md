@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 In order to create your REST APIs just add an `apis/` folder to your `less/` folder. 
 
 ```bash
-mkdir less/apis
+mkdir -p less/apis
 ```
 
 Let's create a `demo` API. We will use it to configure our routes.

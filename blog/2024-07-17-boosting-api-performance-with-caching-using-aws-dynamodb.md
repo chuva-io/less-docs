@@ -159,7 +159,7 @@ Backed by AWS DynamoDB, the [Less Key-Value Store (KVS)](/key-value-store) is av
 Let's update our _GET_ request to cache the response. First we'll check if the data is already in the cache. If it is we'll use it for our response. If not we'll load it from the database and add it to the cache for next time.
 
 ```jsx {1-2,22-35} title="less/apis/ecommerce/categories/get.js" showLineNumbers
-const { kvs } = require('@chuva.io/less-cli');
+const { kvs } = require('@chuva.io/less');
 const CACHE_KEY = 'CATEGORIES_CACHE';
 
 // Sleep function to simulate latency. 
@@ -207,7 +207,7 @@ Another feature of KVS is the ability to set a Time-to-Live (TTL) for items in t
 Let's update the code to set a TTL. I'll set it to 10 seconds so that it's easier for us to test.
 
 ```jsx {34-35} title="less/apis/ecommerce/categories/get.js" showLineNumbers
-const { kvs } = require('@chuva.io/less-cli');
+const { kvs } = require('@chuva.io/less');
 const CACHE_KEY = 'CATEGORIES_CACHE';
 
 // Sleep function to simulate latency. 

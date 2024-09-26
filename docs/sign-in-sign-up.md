@@ -71,3 +71,34 @@ Less will create an AWS account for you and email you your credentials once you 
 [less-cli] Enter your password: ************
 [less-cli] Login successful! Your LESS_TOKEN has been exported to your environment.
 ```
+
+### Reset Password
+
+<Tabs groupId="package-manager" queryString="package-manager">
+  <TabItem value="npx" label="npx">
+    ```bash
+    npx @chuva.io/less-cli@latest forgot-password
+    ```
+  </TabItem>
+
+  <TabItem value="npm" label="npm">
+    ```bash
+    npm i -g @chuva.io/less-cli
+    less-cli forgot-password
+  ```
+  </TabItem>
+
+  <TabItem value="yarn" label="yarn">
+    ```bash
+    yarn global add @chuva.io/less-cli
+    less-cli forgot-password
+    ```
+  </TabItem>
+</Tabs>
+
+```bash
+[less-cli] Enter your email: cesaria@chuva.io
+[less-cli] Enter the verification code sent to your email: ******
+[less-cli] Enter new password: ************
+[less-cli] Password reset successfully
+```

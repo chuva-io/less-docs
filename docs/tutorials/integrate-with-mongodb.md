@@ -14,22 +14,6 @@ MongoDB is a flexible document database system that stores data in JSON-like doc
 
 Official Website: [https://www.mongodb.com](https://www.mongodb.com)
 
-## TLDR; Clone and deploy.
-```shell
-git clone git@github.com:chuva-io/less-templates.git
-cd mongodb
-less-cli deploy YOUR_PROJECT_NAME
-```
-
----
-
-Export your `MONGODB_URI` and `MONGODB_DATABASE_NAME` environment variables before getting started.
-```shell
-export MONGODB_URI='mongodb+srv://username:password@mongodb.net/?retryWrites=true&w=majority'
-export MONGODB_DATABASE_NAME='my_database'
-```
-
-
 <Tabs groupId="programming-language" queryString="programming-language">
   
   <TabItem value="nodejs" label="Node.js">
@@ -38,64 +22,72 @@ export MONGODB_DATABASE_NAME='my_database'
     Source Code: [https://github.com/mongodb/node-mongodb-native](https://github.com/mongodb/node-mongodb-native)  
 
     ### Getting started
-    1. Create a Javascript Mongodb client in `/less/shared/mongodb_client_js/index.js`.
-        ```javascript
+    1. Create a MongoDB client in `/less/shared/mongodb_client/index.js`.
+        ```javascript title="/less/shared/mongodb_client/index.js" showLineNumbers
         const { MongoClient } = require('mongodb');
 
-        const { MONGODB_URI, MONGODB_DATABASE_NAME } = process.env;
+        const MONGODB = {
+          URI: 'mongodb+srv://YOUR_MONGODB_URI',
+          DATABASE_NAME: 'YOUR_DATABASE_NAME',
+          COLLECTION_NAME: 'YOUR_DATABASE_COLLECTION'
+        };
+        
         let client;
-
-        async function connect() {
+        const connect = async () => {
           if (!client) {
-            client = new MongoClient(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+            client = new MongoClient(MONGODB.URI);
             await client.connect();
           }
-        }
+        };
 
-        const collection_name = 'my_collection';
-
-        async function insert_item(item) {
+        const insert_item = async (item) => {
           await connect();
-          const db = client.db(MONGODB_DATABASE_NAME);
-          const collection = db.collection(collection_name);
-          await collection.insertOne(item);
-        }
+          const db = client.db(MONGODB.DATABASE_NAME);
+          const collection = db.collection(MONGODB.COLLECTION_NAME);
+          return await collection.insertOne(item);
+        };
 
-        async function get_all_items() {
+        const list_items = async () => {
           await connect();
-          const db = client.db(MONGODB_DATABASE_NAME);
+          const db = client.db(MONGODB.DATABASE_NAME);
           const collection = db.collection(collection_name);
           return await collection.find().toArray();
         }
 
         module.exports = {
           insert_item,
-          get_all_items
+          list_items
         };
         ```
 
-    2. Create a `GET /hello/js` route in `/less/apis/demo/hello/js/get.js` to test.
-        ```javascript
-        const { insert_item, get_all_items } = require('mongodb_js');
+    2. Create a `POST /items` route in `/less/apis/demo/items/post.js`.
+        ```javascript title="/less/apis/demo/items/post.js" showLineNumbers
+        const { insert_item } = require('mongodb_client');
 
-        module.exports = {
-          process: async (request, response) => {
-            // Create an item.
-            await insert_item({ foo: 'bar '});
-
-            // Fetch all items.
-            const result = await get_all_items();
-
-            // Return HTTP response.
-            response.body = JSON.stringify(result);
-            return response;
-          }
+        exports.process = async (request, response) => {
+          const payload = JSON.parse(request.body);
+          await insert_item(payload);
+          response.body = JSON.stringify(payload);
+          response.statusCode = 201;
+          return response;
         };
         ```
 
-    3. Deploy!
+    3. Create a `GET /items` route in `/less/apis/demo/items/get.js`.
+        ```javascript title="/less/apis/demo/items/get.js" showLineNumbers
+        const { list_items } = require('mongodb_client');
+
+        exports.process = async (request, response) => {
+          const result = await list_items();
+          response.body = JSON.stringify(result);
+          response.statusCode = 200;
+          return response;
+        };
+        ```
+
+    4. Deploy!
         ```shell
-        npx @chuva.io/less-cli deploy YOUR_PROJECT_NAME
+        less-cli deploy YOUR_PROJECT_NAME
         ```
   </TabItem>
 

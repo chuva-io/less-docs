@@ -94,6 +94,11 @@ const config = {
             label: 'Documentation',
             position: 'right',
           },
+          {
+            to: 'https://dashboard.less.chuva.io',
+            label: 'Dashboard',
+            position: 'right',
+          },
         ]
       },
       footer: {

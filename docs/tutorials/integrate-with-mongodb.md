@@ -50,7 +50,7 @@ Official Website: [https://www.mongodb.com](https://www.mongodb.com)
         const list_items = async () => {
           await connect();
           const db = client.db(MONGODB.DATABASE_NAME);
-          const collection = db.collection(collection_name);
+          const collection = db.collection(MONGODB.COLLECTION_NAME);
           return await collection.find().toArray();
         }
 

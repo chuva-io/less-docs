@@ -129,6 +129,10 @@ const config = {
                 href: 'https://github.com/chuva-io',
               },
               {
+                label: 'YouTube',
+                href: 'https://www.youtube.com/@chuva-cv',
+              },
+              {
                 label: 'Facebook',
                 href: 'https://www.facebook.com/io.chuva',
               },

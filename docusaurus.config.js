@@ -77,7 +77,7 @@ const config = {
         {name: 'keywords', content: 'fault tolerant, event-driven, microservices, javascript, typescript, rust, go, python, serverless, aws, google cloud, gcp, azure, terraform, infrastructure as code, devops, cloud, distributed systems'},
       ],
       navbar: {
-        title: 'Less Documentation',
+        title: 'Less Documentation (beta)',
         logo: {
           alt: 'Chuva logo',
           src: 'img/chuva-logo-h-light.svg',
@@ -85,18 +85,18 @@ const config = {
         },
         items: [
           {
-            to: 'blog',
-            label: 'Blog',
-            position: 'right',
-          },
-          {
-            to: '/',
-            label: 'Documentation',
-            position: 'right',
-          },
-          {
             to: 'https://dashboard.less.chuva.io',
             label: 'Dashboard',
+            position: 'right',
+          },
+          {
+            to: '/faq',
+            label: 'FAQ',
+            position: 'right',
+          },
+          {
+            to: '/blog',
+            label: 'Blog',
             position: 'right',
           },
         ]
@@ -151,7 +151,7 @@ const config = {
             items: [
               {
                 label: 'business@chuva.io',
-                to: 'mailto:business@chuva.io',
+                to: 'mailto:business@chuva.io?subject=Less%20%7C%20Get%20in%20touch',
               },
               {
                 label: '+238 353 35 17',

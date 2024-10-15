@@ -212,3 +212,7 @@ You can stop using Less just as easily as you started since it's essentially the
   </tr>
   
 </table>
+
+## FAQ
+
+Do you have any more questions? [Visit our FAQ page](/faq) for answers to some frequently asked questions.

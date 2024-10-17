@@ -148,6 +148,6 @@ Less abstracts the complexities associated with infrastructure as code tools lik
   
   You can reach out to our team for more information or support or to provide suggestions through any of the following methods:
   - Email our team at [business@chuva.io](mailto:business@chuva.io?subject=Less%20Onboarding%20and%20Support)
-  - [Join us on Slack](https://join.slack.com/t/less-ifc/shared_invite/zt-262dn4f8n-8kmibqnqj1T_x0jl_AR4ow)
+  - [Join us on Discord](https://discord.gg/xRACuFXm)
   - [Schedule a video conference](https://calendly.com/chuva-nilson/less-onboarding-and-support)
 </details>

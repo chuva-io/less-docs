@@ -121,8 +121,8 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Slack',
-                href: 'https://join.slack.com/t/less-ifc/shared_invite/zt-262dn4f8n-8kmibqnqj1T_x0jl_AR4ow',
+                label: 'Discord',
+                href: 'https://discord.gg/xRACuFXm',
               },
               {
                 label: 'GitHub',

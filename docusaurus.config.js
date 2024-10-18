@@ -150,8 +150,8 @@ const config = {
             title: 'Contact Us',
             items: [
               {
-                label: 'business@chuva.io',
-                to: 'mailto:business@chuva.io?subject=Less%20%7C%20Get%20in%20touch',
+                label: 'less@chuva.io',
+                to: 'mailto:less@chuva.io?subject=Get%20in%20Touch%20with%20the%20Less%20Team',
               },
               {
                 label: '+238 353 35 17',

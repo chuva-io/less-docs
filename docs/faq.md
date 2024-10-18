@@ -78,6 +78,17 @@ Less takes the burden off of DevOps teams by enabling developers to deploy their
   When you create a Less account we create an isolated AWS account for you under the hood. Less manages this account for you and deploys your code and infrastructure to it.
 </details>
 
+<details>
+  <summary>Can I deploy Less to Google Cloud or Azure?</summary>
+  
+  No, Less currently only supports AWS but we will be adding multi-cloud support in the near future.
+</details>
+
+<details>
+  <summary>Can I deploy Less to an on-premises private cloud or dedicated server?</summary>
+  
+  No, our team is focused on adding multi-cloud support before adding on-premise support, although we do plan on supporting on-premises deployments in the future.
+</details>
 
 <details>
   <summary>Can I access the Less-managed AWS account directly?</summary>
@@ -130,6 +141,18 @@ Less abstracts the complexities associated with infrastructure as code tools lik
 
 
 <details>
+  <summary>Can the Less team support me with other cloud-related tasks such as cost optimization and cloud migration strategy?</summary>
+  
+  Yes, our team can support a wide range of cloud-related needs beyond deployment automation. Our expertise includes helping customers design and optimize cloud and serverless architectures, providing guidance on cloud cost optimization and migration strategies, and assisting with modernizing legacy applications for cloud-native environments. We can also advise on multi-cloud and hybrid cloud setups to avoid vendor lock-in and integrate on-premises systems with cloud services.
+
+  Please reach out to our team for more information or support through any of the following methods:
+  - Email our team at [less@chuva.io](mailto:less@chuva.io?subject=Cloud%20Support%20and%20Strategy%20with%20the%20Less%20Team)
+  - [Join us on Discord](https://discord.gg/xRACuFXm)
+  - [Schedule a video conference](https://calendly.com/chuva-nilson/cloud-support-and-strategy)
+</details>
+
+
+<details>
   <summary>What is the pricing model for Less?</summary>
   
   Less will operate on a subscription model, charging based on the number of users and the managed resources. We will also offer a generous free tier.
@@ -147,7 +170,7 @@ Less abstracts the complexities associated with infrastructure as code tools lik
   <summary>How can I reach out for more information and support or suggestions?</summary>
   
   You can reach out to our team for more information or support or to provide suggestions through any of the following methods:
-  - Email our team at [business@chuva.io](mailto:business@chuva.io?subject=Less%20Onboarding%20and%20Support)
+  - Email our team at [less@chuva.io](mailto:less@chuva.io?subject=Less%20Onboarding%20and%20Support)
   - [Join us on Discord](https://discord.gg/xRACuFXm)
   - [Schedule a video conference](https://calendly.com/chuva-nilson/less-onboarding-and-support)
 </details>

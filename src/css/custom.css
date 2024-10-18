@@ -5,7 +5,7 @@
  */
 
 /* You can override the default Infima variables here. */
-:root {
+[data-theme='light'] {
   --ifm-color-primary: #ff9500;
   --ifm-color-primary-dark: #e68600;
   --ifm-color-primary-darker: #d97f00;
@@ -15,10 +15,9 @@
   --ifm-color-primary-lightest: #ffb54d;
   --docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 15%);
 
-  .alert--info {
-      --ifm-alert-background-color: rgb(246, 248, 250);
-      --ifm-alert-border-color: rgb(0 0 0 / 15%);
-    }
+  /* Note alert colors */
+  --note-background-color: #ff950004;
+  --note-border-color: #ff950068;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -32,8 +31,13 @@
   --ifm-color-primary-lightest: #c1eeca;
   --docusaurus-highlighted-code-line-bg: rgb(66 66 66 / 65%);
 
-  .alert--info {
-    --ifm-alert-background-color: #242526;
-    --ifm-alert-border-color: rgb(66 66 66 / 65%);
-  }
+  /* Note alert colors */
+  --note-background-color: #73d88706;
+  --note-border-color: #73d88740;
+}
+
+.alert--info {
+  --ifm-alert-background-color: var(--note-background-color);
+  --ifm-link-color: var(--ifm-color-primary-light);
+  --ifm-alert-border-color: var(--note-border-color);
 }

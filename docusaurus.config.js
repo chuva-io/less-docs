@@ -122,7 +122,7 @@ const config = {
             items: [
               {
                 label: 'Discord',
-                href: 'https://discord.gg/xRACuFXm',
+                href: 'https://discord.gg/XcYDcjbDRS',
               },
               {
                 label: 'GitHub',

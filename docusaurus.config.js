@@ -130,7 +130,7 @@ const config = {
               },
               {
                 label: 'YouTube',
-                href: 'https://www.youtube.com/@chuva-cv',
+                href: 'https://www.youtube.com/@chuva-io',
               },
               {
                 label: 'Facebook',

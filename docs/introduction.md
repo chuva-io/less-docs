@@ -8,8 +8,6 @@ description: Less automates the creation, management, and deployment of your Clo
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# What Cloud? 🤔
-
 ---
 <center>
 _**Less automates the creation, management, and deployment of your Cloud infrastructure so you can forget words like Cloud, DevOps, AWS, and infrastructure exist.**_

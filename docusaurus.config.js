@@ -90,13 +90,23 @@ const config = {
             position: 'right',
           },
           {
-            to: '/faq',
-            label: 'FAQ',
+            to: 'https://discord.gg/XcYDcjbDRS',
+            label: 'Discord',
+            position: 'right',
+          },
+          {
+            to: 'https://www.youtube.com/@chuva-io',
+            label: 'YouTube',
             position: 'right',
           },
           {
             to: '/blog',
             label: 'Blog',
+            position: 'right',
+          },
+          {
+            to: '/faq',
+            label: 'FAQ',
             position: 'right',
           },
         ]

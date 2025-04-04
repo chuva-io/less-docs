@@ -34,6 +34,9 @@
   /* Note alert colors */
   --note-background-color: #73d88706;
   --note-border-color: #73d88740;
+
+  /* Pricing colors */
+  --pricing-background-color: #282A36;
 }
 
 .alert--info {

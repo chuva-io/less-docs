@@ -77,7 +77,7 @@ const config = {
         {name: 'keywords', content: 'fault tolerant, event-driven, microservices, javascript, typescript, rust, go, python, serverless, aws, google cloud, gcp, azure, terraform, infrastructure as code, devops, cloud, distributed systems'},
       ],
       navbar: {
-        title: 'Less Documentation (beta)',
+        title: 'Less Documentation',
         logo: {
           alt: 'Chuva logo',
           src: 'img/chuva-logo-h-light.svg',
@@ -87,6 +87,11 @@ const config = {
           {
             to: 'https://dashboard.less.chuva.io',
             label: 'Dashboard',
+            position: 'right',
+          },
+          {
+            to: '/pricing',
+            label: 'Pricing',
             position: 'right',
           },
           {

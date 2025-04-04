@@ -168,7 +168,16 @@ const config = {
                 to: 'tel:+2383533517',
               }
             ],
-          }
+          },
+          {
+            title: 'Other',
+            items: [
+              {
+                label: 'Terms and Conditions',
+                to: '/terms-and-conditions',
+              },
+            ],
+          },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Chuva.`,
       },

@@ -50,7 +50,7 @@ In order to set the CRON schedule you will need to configure them as [Environmen
 In the example of the `generate_daily_report` CRON the envoronment variable would be `CRON_GENERATE_DAILY_REPORT`:
 
 ```bash
-export CRON_GENERATE_DAILY_REPORT="0 0 * * ? *"
+export CRON_GENERATE_DAILY_REPORT="0 0 * * *"
 ```
 
 :::note Remember to add the env var to your less.config.
@@ -68,5 +68,7 @@ Read the [Less configuration documentation](/configuration#environment-variables
 :::
 
 :::tip
-Visit the [AWS Cron expressions reference](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cron-expressions.html) for CRON expression syntax documentation.
+Check out the following links to learn how to create CRON expressions:
+  - [crontab.org](http://crontab.org)
+  - [crontab.guru](https://crontab.guru)
 :::
